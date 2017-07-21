@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -7,7 +8,16 @@
 
 using namespace std;
 
+class Node{
+public:
+   int point;
+   Node* p[40];
+   Node();
+};
+
+
+
 class Search_Engine{
 public:
-    void Indexing
+
 };
