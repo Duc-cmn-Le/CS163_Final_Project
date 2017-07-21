@@ -79,6 +79,7 @@ int Trie::Search(string &s) {
 }
 
 int main() {
+    /*
     string s;
     Trie T;
     int n;
@@ -94,5 +95,7 @@ int main() {
     cout << T.Search(s) << '\n';
     cin >> s;
     cout << T.Search(s) << '\n';
+    */
+    cout << "\033[33m" << "bold red text\033[0m\n";
     return 0;
 }
