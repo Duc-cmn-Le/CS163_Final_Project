@@ -1,0 +1,37 @@
+// Huu Duc
+void Trie::Insert(string &s) {
+    Node *cur = root;
+	int *tmp = new int[s.length]()];
+	for (int i = 0;i < s.length();i++)
+	{
+		if (s[i] >= 'a' && s[i] <= 'z') me[i] = s[i] - 87;
+		else if (s[i] >= '0' && s[i] <= '9') me[i] = s[i] - '0';
+		else if (s[i] >= '\'') me[i] = 36;
+		else if (s[i] >= '.') me[i] = 37;
+		else if (s[i] >= '%') me[i] = 38;
+		else if (s[i] >= '@') me[i] = 39;
+		if (cur->p[me[i]] == NULL)
+			cur->p[me[i]] = new Node;
+		cur = cur->p[me[i]];
+	}
+	delete[]tmp;
+    cur->point++;
+}   
+// Huu Duc
+int Trie::Search(string &s) {
+	Node *cur = root;
+	int *tmp = new int[s.length]()];
+	for (int i = 0;i < s.length();i++)
+	{
+		if (s[i] >= 'a' && s[i] <= 'z') me[i] = s[i] - 87;
+		else if (s[i] >= '0' && s[i] <= '9') me[i] = s[i] - '0';
+		else if (s[i] >= '\'') me[i] = 36;
+		else if (s[i] >= '.') me[i] = 37;
+		else if (s[i] >= '%') me[i] = 38;
+		else if (s[i] >= '@') me[i] = 39;
+		if (cur->p[me[i]] == NULL) break;
+		cur = cur->p[me[i]];
+	}
+	delete[]tmp;
+	return cur->point;
+}
