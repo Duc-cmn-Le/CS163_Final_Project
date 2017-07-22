@@ -8,19 +8,21 @@ Search_Engine::Search_Engine() {
     fin.close();
     system("rm file.tmp");
     a = new Trie[n];
+    Indexing();
 }
 
 void Search_Engine::Indexing() {
     system("ls CS163-Data > file.tmp");
     ifstream tmp_fin("file.tmp"), fin;
-    string s;
+    string s, ss;
     int cnt = 0;
     while (tmp_fin) {
         tmp_fin >> s;
-        fin.open(s.c_str());
+        fin.open("CS163-Data/"+s);
         a[cnt].Input_file(fin);
         fin.close();
         cnt++;
     }
     tmp_fin.close();
+    system("rm file.tmp");
 }
