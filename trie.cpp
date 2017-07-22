@@ -33,12 +33,12 @@ void Trie::Insert(string &s) {
     cur->point++;
 }   
 
-int Search(string &s) {
+int Trie::Search(string &s) {
 
 }
 
 // Giao cho Gia Bao
-void Input_file(istream &fin) {
+void Trie::Input_file(istream &fin) {
     
 }
 
