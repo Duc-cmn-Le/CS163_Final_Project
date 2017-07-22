@@ -23,14 +23,7 @@ void Trie::Destruct(Node* cur) {
 }
 
 void Trie::Insert(string &s) {
-    Node *cur = root;
-    for (string::iterator i=s.begin();i!=s.end();++i) {
-        int c;
-        if (*i >= '0' && *i <= '9') c = 26+*i-'0';
-        if (*i >= 'a' && *i <= 'z') c = *i-'a';
-        if (*i >= 'A' && *i <= 'Z') c = *i-'A';
-    }   
-    cur->point++;
+
 }   
 
 int Trie::Search(string &s) {
@@ -49,7 +42,7 @@ void Trie::Extract_word(string &s)
         while (i!=s.end()-1)
         if (*(++i)!=' ') tmp+=tolower(*i);
         else break;
-        Insert(tmp);
+            Insert(tmp);
     }
 }
 

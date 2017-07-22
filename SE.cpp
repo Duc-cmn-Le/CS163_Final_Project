@@ -8,6 +8,7 @@ Search_Engine::Search_Engine() {
     fin.close();
     system("rm file.tmp");
     a = new Trie[n];
+    title = new Trie[n];  
     Indexing();
 }
 
@@ -20,6 +21,10 @@ void Search_Engine::Indexing() {
         tmp_fin >> s;
         fin.open("CS163-Data/"+s);
         a[cnt].Input_file(fin);
+        fin.close();
+        fin.open("CS163-Data/"+s);
+        getline(fin,s);
+        title[cnt].Extract_word(s);
         fin.close();
         cnt++;
     }

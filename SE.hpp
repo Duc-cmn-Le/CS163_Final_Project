@@ -13,6 +13,7 @@ using namespace std;
 class Search_Engine{
 public:
     Trie* a;
+    Trie* title;
     int n;
     Search_Engine();  
     void Indexing();

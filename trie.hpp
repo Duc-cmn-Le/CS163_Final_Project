@@ -27,5 +27,5 @@ public:
     void Show_trie(Node*,string);
     int Search(string &);
     void Input_file(istream &fin);
-    void Extract_word(string);
+    void Extract_word(string &);
 };
