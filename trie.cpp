@@ -35,6 +35,7 @@ void Trie::Insert(string &s) {
 
 int Trie::Search(string &s) {
 
+    return 0;
 }
 
 // Giao cho Gia Bao

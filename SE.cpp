@@ -11,5 +11,16 @@ Search_Engine::Search_Engine() {
 }
 
 void Search_Engine::Indexing() {
-    
+    system("ls CS163-Data > file.tmp");
+    ifstream tmp_fin("file.tmp"), fin;
+    string s;
+    int cnt = 0;
+    while (tmp_fin) {
+        tmp_fin >> s;
+        fin.open(s.c_str());
+        a[cnt].Input_file(fin);
+        fin.close();
+        cnt++;
+    }
+    tmp_fin.close();
 }
