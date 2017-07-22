@@ -38,8 +38,25 @@ int Trie::Search(string &s) {
     return 0;
 }
 
-// Giao cho Gia Bao
+// Gia Bao
+void Trie::Extract_word(string &s)
+{
+    string tmp;
+    for(string::iterator i=s.begin();i!=s.end();i++)
+    if (*i!=' ')
+    {
+        tmp=tolower(*i);
+        while (i!=s.end()-1)
+        if (*(++i)!=' ') tmp+=tolower(*i);
+        else break;
+        Insert(tmp);
+    }
+}
+
+// Gia Bao
 void Trie::Input_file(istream &fin) {
-    
+    string s;
+    while (getline(fin,s))
+        Extract_word(s);
 }
 
