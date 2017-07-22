@@ -1,31 +1,15 @@
 #include "SE.hpp"
 
-Node::Node() {
-    point = 0;
-    for (int i=0;i<40;++i)
-        p[i] = NULL;
+Search_Engine::Search_Engine() {
+    n = 0;
+    system("ls -F CS163-Data |grep -v / | wc -l > file.tmp");
+    ifstream fin("file.tmp");
+    fin >> n;
+    fin.close();
+    system("rm file.tmp");
+    a = new Trie[n];
 }
 
-// Trie = = = = = = = =  = = = =
-Trie::Trie() {
-    root = new Node;
+void Search_Engine::Indexing() {
+    
 }
-
-void Trie::Destruct(Node* cur) {
-    for (int i=0;i<40;++i)
-        if (cur->p[i] != NULL) Destruct(cur->p[i]);
-    delete cur;
-}
-
-void Trie::Insert(string &s) {
-    Node *cur = root;
-    for (string::iterator i=s.begin();i!=s.end();++i) {
-        int c;
-        if (*i >= '0' && *i <= '9') c = 26+*i-'0';
-        if (*i >= 'a' && *i <= 'z') c = *i-'a';
-        if (*i >= 'A' && *i <= 'Z') c = *i-'A';
-    }   
-    cur->point++;
-}   
-
-
