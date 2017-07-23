@@ -34,4 +34,5 @@ void Search_Engine::Indexing() {
         cnt++;
     }
     tmp_fin.close();
+    system("rm file.tmp");
 }

@@ -58,7 +58,7 @@ void Trie::Show_trie(Node* cur,string s) {
     if (cur->p[36] != NULL)
         Show_trie(cur->p[36],s+'\'');
     if (cur->p[37] != NULL)
-        Show_trie(cur->p[37],s+'-');
+        Show_trie(cur->p[37],s+"-");
 }
 
 void Trie::Show_trie() {
