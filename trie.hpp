@@ -21,10 +21,12 @@ private:
     void Destruct(Node* );
 public:
     Node* root;
+    int max_c;
     Trie();
     ~Trie();
     void Insert(string &);
     void Show_trie(Node*,string);
+    void Show_trie();
     int Search(string &);
     void Input_file(istream &fin);
     void Extract_word(string &);

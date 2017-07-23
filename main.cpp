@@ -1,4 +1,3 @@
-#pragma once
 #include "SE.hpp"
 #include "UI.hpp"
 

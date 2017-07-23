@@ -9,6 +9,7 @@ Node::Node() {
 // Trie = = = = = = = = = = = =
 Trie::Trie() {
     root = new Node;
+    max_c = 40;
 }
 
 Trie::~Trie() {
@@ -18,7 +19,7 @@ Trie::~Trie() {
 // Cong Duc
 void Trie::Destruct(Node* cur) {
     if (cur == NULL) return;
-    for (int i=0;i<40;++i)
+    for (int i=0;i<max_c;++i)
         if (cur->p[i] != NULL) Destruct(cur->p[i]);
     delete cur;
 }
@@ -36,12 +37,28 @@ void Trie::Insert(string &s) {
             else if (*i >= '.') tmp = 37;
             else if (*i >= '%') tmp = 38;
             else if (*i >= '@') tmp = 39;
+            else continue;
             if (cur->p[tmp] == NULL)
                     cur->p[tmp] = new Node;
             cur = cur->p[tmp];
     }
     cur->point++;
 }   
+
+// Cong Duc
+void Trie::Show_trie(Node* cur,string s) {
+    if (cur->point > 0)
+        for (int i=0;i<cur->point;++i)
+            cout << s << '\n';
+    for (int i=0;i<10;++i)
+        if (cur->p[i]) Show_trie(cur->p[i],s+(char)(i+'0');
+    for (int i=10;i<36;++i)
+        if (cur->p[i]) Show_trie(cur->p[i],s+(char)(i+'a');
+}
+
+void Trie::Show_trie() {
+    Show_trie(root,"");
+}
 
 // Huu Duc
 int Trie::Search(string &s) {
