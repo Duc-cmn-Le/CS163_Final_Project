@@ -19,11 +19,9 @@ void Search_Engine::Indexing() {
     int cnt = 0;
     for (int i=0;i<n;++i) {
         tmp_fin >> s;
-        /*
         fin.open("CS163-Data/"+s);
         a[cnt].Input_file(fin);
         fin.close();
-        */
         // In title
         fin.open("CS163-Data/"+s);
         getline(fin,ss);

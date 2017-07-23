@@ -33,10 +33,10 @@ void Trie::Insert(string &s) {
             if (*i >= 'a' && *i <= 'z') tmp = *i - 'a' + 10;
             else if (*i >= 'A' && *i <= 'Z') tmp = *i - 'A' + 10;
             else if (*i >= '0' && *i <= '9') tmp = *i - '0';
-            else if (*i >= '\'') tmp = 36;
-            else if (*i >= '-') tmp = 37;
-            else if (*i >= '%') tmp = 38;
-            else if (*i >= '@') tmp = 39;
+            else if (*i == '\'') tmp = 36;
+            else if (*i == '-') tmp = 37;
+            else if (*i == '%') tmp = 38;
+            else if (*i == '@') tmp = 39;
             else continue;
             if (cur->p[tmp] == NULL)
                     cur->p[tmp] = new Node;
@@ -74,10 +74,10 @@ int Trie::Search(string &s) {
             if (*i >= 'a' && *i <= 'z') tmp = *i - 'a' + 10;
             else if (*i >= 'A' && *i <= 'Z') tmp = *i - 'A' + 10;
             else if (*i >= '0' && *i <= '9') tmp = *i - '0';
-            else if (*i >= '\'') tmp = 36;
-            else if (*i >= '-') tmp = 37;
-            else if (*i >= '%') tmp = 38;
-            else if (*i >= '@') tmp = 39;
+            else if (*i == '\'') tmp = 36;
+            else if (*i == '-') tmp = 37;
+            else if (*i == '%') tmp = 38;
+            else if (*i == '@') tmp = 39;
             if (cur->p[tmp] == NULL) return 0;
             cur = cur->p[tmp];
     }
