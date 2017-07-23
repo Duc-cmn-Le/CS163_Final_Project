@@ -1,6 +1,8 @@
 #pragma once
 #include "trie.hpp"
 #include <iostream>
+#include <iomanip>
+#include <vector>
 #include <fstream>
 #include <algorithm>
 #include <cstring>
