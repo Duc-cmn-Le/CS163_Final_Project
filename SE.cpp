@@ -19,16 +19,18 @@ void Search_Engine::Indexing() {
     int cnt = 0;
     for (int i=0;i<n;++i) {
         tmp_fin >> s;
+        /*
         fin.open("CS163-Data/"+s);
         a[cnt].Input_file(fin);
         fin.close();
+        */
         // In title
         fin.open("CS163-Data/"+s);
         getline(fin,ss);
         title[cnt].Extract_word(ss);
         fin.close();
-            cout << s << '\n';
             title[cnt].Show_trie();
+            cout << '\n' << ss << '\n';
         cnt++;
     }
     tmp_fin.close();

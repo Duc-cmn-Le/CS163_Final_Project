@@ -4,5 +4,5 @@
 class User_interface{
 public:
     void Program();
-    ... Query_processing(string &);
+//    ... Query_processing(string &);
 };
