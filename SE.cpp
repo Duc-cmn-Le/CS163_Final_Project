@@ -21,6 +21,15 @@ Search_Engine::Search_Engine() {
 }
 
 // Cong Duc
+Search_Engine::~Search_Engine() {
+    delete []a;
+    delete []title;
+    delete []content;
+    delete []exist;
+    delete []ranking;
+}
+
+// Cong Duc
 bool Search_Engine::Compare_existence(int i,int j) {
     return exist[i] > exist[j];
 }
@@ -67,6 +76,8 @@ void Search_Engine::Storing() {
 
 // Cong Duc
 void Search_Engine::Search_exact(string &s) {
+    for (string::iterator i=s.begin();i!=s.end();++i)
+        *i = tolower(*i);
     // Get the first token
     string first_token = "";
     for (string::iterator i=s.begin();i!=s.end();++i)
@@ -81,26 +92,68 @@ void Search_Engine::Search_exact(string &s) {
     int m = s.length(), *f = new int [m];
     f[0] = -1;
     for (int i=1,k=-1;i<m;++i) {
-        while (k >= 0 && s[k+1] != s[i]) k = f[k];
-        if (s[k+1] == s[i]) k++;
+        while (k >= 0 && tolower(s[k+1]) != tolower(s[i])) k = f[k];
+        if (tolower(s[k+1]) == tolower(s[i])) k++;
         f[i] = k;
     }
     for (int _=0;_<n;++_)
         if (exist[_] > 0) {
             exist[_] = 0;
-            int n = content[_].length();
-            for (int i=0,k=-1;i<n;++i) {
-                while (k >= 0 && s[k+1] != content[i][i]) k = f[k];
-                if (s[k+1] == content[i][i]) k++;
+            int nn = content[_].length();
+            for (int i=0,k=-1;i<nn;++i) {
+                while (k >= 0 && tolower(s[k+1]) != tolower(content[_][i])) k = f[k];
+                if (tolower(s[k+1]) == tolower(content[_][i])) k++;
                 if (k == m-1) {
                     exist[_]++; 
 //                    printf("%d ",i-k+1);
                     k = f[k];
                 }
             }
+
         }
+    delete [] f;
 //    bool (Search_Engine::*func)(int,int);
 //    func = &Search_Engine::Compare_existence;
 //    sort(ranking,ranking+n,*func);
-    sort(ranking,ranking+n,Compare_existence);
+//    sort(ranking,ranking+n,Compare_existence);
+    Sort_by_existence();
+
+    string ss;
+    int count = 0;
+    cout << "\033[1;32m\"" << s << "\"\033[0m"  << " appears in:\n";
+    for (int i=0;i<n;++i)
+        if (exist[ranking[i]] > 0) {
+            system("ls CS163-Data > file.tmp");
+            ifstream tmp_fin("file.tmp");
+            for (int j=0;j<=ranking[i];++j) tmp_fin >> ss; 
+            cout << ss << ' ' << exist[ranking[i]] << " time" << (exist[ranking[i]] > 1 ? 's' : ' ') << '\n';
+            system("rm file.tmp");
+            tmp_fin.close();
+            count++;
+        }
+        else break;
+    if (count == 0) cout << "Not found\n";
+}
+
+// Cong Duc
+void Search_Engine::Sort_by_existence() {
+    Partition(0,n-1);
+}
+
+// Cong Duc
+void Search_Engine::Partition(int L,int H) {
+    if (L >= H) return;
+    int k = ranking[(L+H)/2];
+    int i = L, j = H;
+    do {
+        while (exist[ranking[i]] > exist[k]) i++;
+        while (exist[ranking[j]] < exist[k]) j--;
+        if (i <= j) {
+            if (i < j)
+                swap(ranking[i], ranking[j]);
+            i++; j--;
+        }
+    } 
+    while (i <= j);
+    Partition(L,j); Partition(i,H);
 }
