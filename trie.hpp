@@ -7,6 +7,9 @@
 #include <cmath>
 #include <string>
 
+#define DEBUN(x) cout << x << '\n'
+#define DEBUG(x) cout << x << ' '
+
 using namespace std;
 
 class Node{

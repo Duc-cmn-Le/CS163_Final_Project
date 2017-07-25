@@ -9,7 +9,9 @@ Search_Engine::Search_Engine() {
     system("rm file.tmp");
     a = new Trie[n];
     title = new Trie[n];  
+    content = new string[n];
     Indexing();
+    Storing();
 }
 
 void Search_Engine::Indexing() {
@@ -27,9 +29,24 @@ void Search_Engine::Indexing() {
         getline(fin,ss);
         title[cnt].Extract_word(ss);
         fin.close();
-            title[cnt].Show_trie();
-            cout << '\n' << ss << '\n';
         cnt++;
+    }
+    tmp_fin.close();
+    system("rm file.tmp");
+}
+
+void Search_Engine::Storing() {
+    system("ls CS163-Data > file.tmp");
+    ifstream tmp_fin("file.tmp"), fin;
+    string s, ss;
+    for (int i=0;i<n;++i) {
+        tmp_fin >> s;
+        fin.open("CS163-Data/"+s);
+        content[i] = "";
+        while (getline(fin,ss)) {
+            content[i] += ss;
+        }
+        fin.close();
     }
     tmp_fin.close();
     system("rm file.tmp");

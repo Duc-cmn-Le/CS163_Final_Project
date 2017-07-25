@@ -125,7 +125,7 @@ void Trie::Extract_word(string &s)
 // Gia Bao
 void Trie::Input_file(istream &fin) {
     string s;
-    while (getline(fin,s))
+    while (getline(fin,s)) 
         Extract_word(s);
 }
 

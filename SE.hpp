@@ -16,7 +16,9 @@ class Search_Engine{
 public:
     Trie* a;
     Trie* title;
+    string* content;
     int n;
     Search_Engine();  
     void Indexing();
+    void Storing();
 };
