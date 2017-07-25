@@ -4,8 +4,8 @@ void User_interface::Program() {
     cout << setw(50) << "\033[1;4;32mSEARCH ENGINE\033[0m\n";     
 }   
 
-//    User_interface::Query_processing(string &s) {
-int* User_interface::Query_processing(string &s) {
+//    User_interface::Query_processing(string &s,Search_Engine New) {
+int* User_interface::Query_processing(string &s,Search) {
 	
 	string tmp = "\0";int type = 0;
 	vector<string> group;
