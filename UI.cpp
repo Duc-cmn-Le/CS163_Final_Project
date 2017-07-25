@@ -5,7 +5,7 @@ void User_interface::Program() {
 }   
 
 //    User_interface::Query_processing(string &s,Search_Engine New) {
-int* User_interface::Query_processing(string &s,Search) {
+int* User_interface::Query_processing(string &s,Search) {  // return a int array contain grade of n-trie
 	
 	string tmp = "\0";int type = 0;
 	vector<string> group;
