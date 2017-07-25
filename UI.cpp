@@ -7,6 +7,7 @@ int User_interface::Check_all_space(string &s) {
 }
 void User_interface::Program() {
     cout << "\033[31mLoading data \033[34mPlease wait\n\033[0m";
+    cout << "This program supports query 'and', 'or' ,'-' and 'exact match \" \"'\n";
     Search_Engine New;
     cout << setw(50) << "\033[1;4;34mSEARCH ENGINE\033[0m\n";     
     string s;
