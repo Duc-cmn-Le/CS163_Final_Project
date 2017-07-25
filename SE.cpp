@@ -14,6 +14,7 @@ Search_Engine::Search_Engine() {
     content = new string[n];
     exist = new int [n];
     ranking = new int [n];
+    header = new string [n];
     for (int i=0;i<n;++i) 
         ranking[i] = i;
     Indexing();
@@ -27,6 +28,7 @@ Search_Engine::~Search_Engine() {
     delete []content;
     delete []exist;
     delete []ranking;
+    delete []header;
 }
 
 // Cong Duc
@@ -41,12 +43,12 @@ void Search_Engine::Indexing() {
     string s, ss;
     int cnt = 0;
     for (int i=0;i<n;++i) {
-        tmp_fin >> s;
-        fin.open("CS163-Data/"+s);
+        tmp_fin >> header[i];
+        fin.open("CS163-Data/"+header[i]);
         a[cnt].Input_file(fin);
         fin.close();
         // In title
-        fin.open("CS163-Data/"+s);
+        fin.open("CS163-Data/"+header[i]);
         getline(fin,ss);
         title[cnt].Extract_word(ss);
         fin.close();
@@ -62,8 +64,7 @@ void Search_Engine::Storing() {
     ifstream tmp_fin("file.tmp"), fin;
     string s, ss;
     for (int i=0;i<n;++i) {
-        tmp_fin >> s;
-        fin.open("CS163-Data/"+s);
+        fin.open("CS163-Data/"+header[i]);
         content[i] = "";
         while (getline(fin,ss)) {
             content[i] += ss;
@@ -104,7 +105,10 @@ void Search_Engine::Search_exact(string &s) {
                 while (k >= 0 && tolower(s[k+1]) != tolower(content[_][i])) k = f[k];
                 if (tolower(s[k+1]) == tolower(content[_][i])) k++;
                 if (k == m-1) {
-                    exist[_]++; 
+                    if (!((content[_][i+1] >= 'a' && content[_][i+1] <= 'z') ||
+                        (content[_][i+1] >= '0' && content[_][i+1] <= '9') ||
+                        (content[_][i+1] >= 'A' && content[_][i+1] <= 'Z')))
+                        exist[_]++; 
 //                    printf("%d ",i-k+1);
                     k = f[k];
                 }
@@ -118,17 +122,81 @@ void Search_Engine::Search_exact(string &s) {
 //    sort(ranking,ranking+n,Compare_existence);
     Sort_by_existence();
 
-    string ss;
     int count = 0;
     cout << "\033[1;32m\"" << s << "\"\033[0m"  << " appears in:\n";
     for (int i=0;i<n;++i)
         if (exist[ranking[i]] > 0) {
-            system("ls CS163-Data > file.tmp");
-            ifstream tmp_fin("file.tmp");
-            for (int j=0;j<=ranking[i];++j) tmp_fin >> ss; 
-            cout << ss << ' ' << exist[ranking[i]] << " time" << (exist[ranking[i]] > 1 ? 's' : ' ') << '\n';
-            system("rm file.tmp");
-            tmp_fin.close();
+            cout << header[ranking[i]]<< ' ' << exist[ranking[i]] << " time" << (exist[ranking[i]] > 1 ? 's' : ' ') << '\n';
+            count++;
+        }
+        else break;
+    if (count == 0) cout << "Not found\n";
+} 
+
+// Cong Duc
+void Search_Engine::Search_normal(string &s) {
+    string ss = s;
+    for (string::iterator i=s.begin();i!=s.end();++i)
+        *i = tolower(*i);
+    // 
+    for (int i=0;i<n;++i) ranking[i] = 0, exist[i] = 0; 
+    string cur;
+    Next_token(s,cur);
+    for (int i=0;i<n;++i) {
+        exist[i] = a[i].Search(cur);
+        if (exist[i] > 0) ranking[i] = 1;
+    }
+    int cnt_and = 0, t;
+    while (Next_token(s,cur)) {
+        if (cur == "and" || cur == "or") {
+            if (cur == "and") {
+                cnt_and++;
+                while (Next_token(s,cur)) {
+                    if (cur != "and" && cur != "or") // not stopword
+                    {
+                        for (int i=0;i<n;++i) {
+                            t = a[i].Search(cur);
+                            if (t == 0) ranking[i] = 0;
+                            else ranking[i]++, exist[i] += t;
+                        }
+                        break;
+                    }
+                }
+            }
+            else {
+                while (Next_token(s,cur)) {
+                    if (cur != "and" && cur != "or") {
+                        for (int i=0;i<n;++i) {
+                            t = a[i].Search(cur);
+                            if (t != 0) ranking[i]++, exist[i] += t;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        else if (cur[0] == '-') {
+            cur.erase(cur.begin());
+            for (int i=0;i<n;++i)
+                if (a[i].Search(cur))
+                    exist[i] = -123456789;
+        }
+        else 
+            for (int i=0;i<n;++i)
+                exist[i] += a[i].Search(cur); 
+    }
+    for (int i=0;i<n;++i)
+        if (ranking[i] < cnt_and+1) ranking[i] = 0;
+    for (int i=0;i<n;++i)
+        if (ranking[i] == 0 || exist[i]+ranking[i] < 0) exist[i] = 0;
+    for (int i=0;i<n;++i) ranking[i] = i;
+    Sort_by_existence();
+
+    int count = 0;
+    cout << "\033[1;32m" << ss << "\033[0m" << '\n'; 
+    for (int i=0;i<n;++i)
+        if (exist[ranking[i]] > 0) {
+            cout << header[ranking[i]] << ' ' << exist[ranking[i]] << " time" << (exist[ranking[i]] > 1 ? 's' : ' ') << '\n';
             count++;
         }
         else break;
@@ -157,3 +225,27 @@ void Search_Engine::Partition(int L,int H) {
     while (i <= j);
     Partition(L,j); Partition(i,H);
 }
+
+int Search_Engine::Next_token(string &s,string &target,char c){
+    if (s.length() == 0) return false;
+    target = "";
+    int ok = 0, cnt = 0;
+    for (string::iterator i=s.begin();i!=s.end();++i,++cnt) {
+        if (*i == c) {
+            target.insert(target.begin(),s.begin(),i);
+            s.erase(0,cnt+1);
+            return true;
+        }
+        /*
+        if (*i != c) 
+            target += *i, ok = 1;
+        else if (ok) return true;
+        s.erase(i);
+        */
+    }
+//    return s.length() > 0;
+    target = s;
+    s = "";
+    return true;
+}
+

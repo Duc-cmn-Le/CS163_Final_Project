@@ -3,9 +3,7 @@
 
 
 int main() {
-    Search_Engine New;
-    string s;
-    getline(cin,s);
-    New.Search_exact(s);
+    User_interface Google;
+    Google.Program();
     return 0;
 }
