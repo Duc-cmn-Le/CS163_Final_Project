@@ -4,7 +4,6 @@
 // Cong Duc
 Search_Engine::Search_Engine() {
     n = 0;
-    system("cd /Users/\"$(whoami)\"/Downloads/Group02_SE3");
     system("ls -F CS163-Data |grep -v / | wc -l > file.tmp");
     ifstream fin("file.tmp");
     fin >> n;
