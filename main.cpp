@@ -27,9 +27,13 @@ int main() {
     }
     fin.close();
     system("rm file.tmp");
-    // - - - - 
+    // - - - - End
     
-    
+    // Indexing words in database
+    Trie T_title, T_content;    
+            /// Place your code here
+
+    // - - - - - End
 
 
     
