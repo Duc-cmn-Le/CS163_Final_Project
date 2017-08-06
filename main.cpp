@@ -18,7 +18,7 @@ int main() {
         fin >> String;
         strcpy(database[i].filename,String.c_str());
         fin_2.open("CS163-Data/"+String);
-        Openfile(fin_2,title,content);
+        Open_file(fin_2,title,content);
         database[i].title = new char [title.length()];
         strcpy(database[i].title,title.c_str());
         database[i].content = new char [content.length()];
@@ -35,7 +35,7 @@ int main() {
     
     // Free memory
     for (int i=0;i<number_of_file;++i) 
-        Closefile(database[i].title,database[i].content);
+        Free_file(database[i].title,database[i].content);
     delete []database;
     return 0;
 }

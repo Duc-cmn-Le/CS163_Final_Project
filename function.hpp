@@ -15,18 +15,24 @@
 using namespace std;
 
 struct details {
-    int x;
+    int file_id; 
     details *next = NULL;
     vector<int> pos;
 };
 class Node {
 public:
     Node *next[256] = {NULL};
-    details *info = NULL;
+    details *info = NULL; // info is a linkedlist
+    int point = 0;
 };
 
 struct Trie{
+    ~Trie();
+    void Destruct(details*);
+    void Destruct(Node*);
     Node *root = new Node;
+    void Insert(char*,int,int); // word, file_id, pos_in_content
+    Node *Find(char*);
 
 };
 
@@ -36,5 +42,5 @@ struct Data {
     char *content = NULL;
 };
 
-void Openfile(istream &,string &,string &);
-void Closefile(char *&,char*&);
+void Open_file(istream &,string &,string &);
+void Free_file(char *&,char*&);
