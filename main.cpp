@@ -1,4 +1,6 @@
 #include "function.hpp"
+#define xau database[i].title
+#define chuoi database[i].content
 
 int main() {
     int number_of_file;
@@ -31,9 +33,49 @@ int main() {
     
     // Indexing words in database
     Trie T_title, T_content;    
-            /// Place your code here
-
-    // - - - - - End
+    for(int i=0;i<number_of_file;i++) {
+        //Title
+        int len=strlen(xau);
+        string tmp;
+        for(int j=0;j<len;j++)
+        if (xau[j]=='$' || xau[j]=='#' || xau[j]=='@' || xau[j]=='&' || xau[j]=='*')
+            T_title.Insert(xau+j,i,j);
+        else if (isalnum(xau[j])) {
+            tmp=tolower(xau[j]);
+            int k=j;
+            while (j<len-1)
+            if (isalnum(xau[++j]) || xau[j]=='\'')
+                tmp+=tolower(xau[j]);
+            else break;
+            if (xau[j]=='$' || xau[j]=='#' || xau[j]=='@' || xau[j]=='&' || xau[j]=='*')
+                T_title.Insert(xau+j,i,j);
+            T_title.Insert(tmp.c_str(),i,k);
+            if (*(tmp.end()-1)=='\'') {
+                tmp.erase(tmp.end()-1);
+                T_title.Insert(tmp.c_str(),i,k);
+            }
+        }
+        //Content
+        len=strlen(chuoi);
+        for(int j=0;j<len;j++)
+        if (chuoi[j]=='$' || chuoi[j]=='#' || chuoi[j]=='@' || chuoi[j]=='&' || chuoi[j]=='*')
+            T_content.Insert(chuoi+j,i,j);
+        else if (isalnum(chuoi[j])) {
+            tmp=tolower(chuoi[j]);
+            int k=j;
+            while (j<len-1)
+            if (isalnum(chuoi[++j]) || chuoi[j]=='\'')
+                tmp+=tolower(chuoi[j]);
+            else break;
+            if (chuoi[j]=='$' || chuoi[j]=='#' || chuoi[j]=='@' || chuoi[j]=='&' || chuoi[j]=='*')
+                T_content.Insert(chuoi+j,i,j);
+            T_content.Insert(tmp.c_str(),i,k);
+            if (*(tmp.end()-1)=='\'') {
+                tmp.erase(tmp.end()-1);
+                T_content.Insert(tmp.c_str(),i,k);
+            }
+        }
+    }
 
 
     
