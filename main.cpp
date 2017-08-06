@@ -26,6 +26,7 @@ int main() {
         fin_2.close();
     }
     fin.close();
+    system("rm file.tmp");
     // - - - - 
     
     
