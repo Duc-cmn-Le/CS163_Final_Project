@@ -1,9 +1,9 @@
 IBM landed a big win in the race to sell blockchain to Wall Street
 
 IBM has been selected to build a new blockchain-based international trading system for a consortium of global banks, a major win for the tech giant in the race to sell blockchain to Wall Street.
-Deutsche Bank, HSBC, KBC, Natixis, Rabobank, Société Générale and UniCredit announced in January that they were banding together to build a "Digital Trade Chain (DTC)," a blockchain-based trade finance platform. 
+Deutsche Bank, HSBC, KBC, Natixis, Rabobank, Socit Gnrale and UniCredit announced in January that they were banding together to build a "Digital Trade Chain (DTC)," a blockchain-based trade finance platform. 
 International trade is currently a convoluted process where most involved can't see the whole process, instead only dealing with one other party in a complex supply chain. 
-DTC will use the same technology that underpins digital currency bitcoin to connects all parties involved in international trade — buyers, sellers, transporters, banks financing the deals, and so on. The hope is that this leads to more financing for people lower down the chain as banks can be confident seeing the end buyer is good for the money.
+DTC will use the same technology that underpins digital currency bitcoin to connects all parties involved in international trade  buyers, sellers, transporters, banks financing the deals, and so on. The hope is that this leads to more financing for people lower down the chain as banks can be confident seeing the end buyer is good for the money.
 IBM announced on Tuesday that it has been selected by the consortium to build DTC, following what it calls "a global competitive bidding process."
 Marie Wieck, IBM Blockchain's general manager, says in a release: "In working with hundreds of clients around the world on a diverse range of blockchain projects, trade finance has emerged as one of the strongest use cases for the technology."
 The contract is a significant win for IBM as it means DTC will be built on IBM's blockchain platform of choice, Hyperledger Fabric. That likely means lucrative servicing contracts for IBM and may make banking execs more likely to commission more Hyperledger-based products and services once they're familiar with the system.

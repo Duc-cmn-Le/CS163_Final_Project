@@ -7,9 +7,9 @@ Challenging the consensus of scientists, the CEO of the third biggest chicken pr
 
 Mississippi-based Sanderson Farms has held its position to not withdraw antibiotics from its farms while other major producers make varying commitments to cut their use. Tyson said it will eliminate human antibiotics from its flock this year, and Pilgrim's Pride said about 24% of its chickens are raised without them.
 
-Public health officials and the White House have voiced serious concerns that overuse of these vital medicines is contributing to the rise of bacteria that are resistant to them, and the CDC calls it "one of the world’s most pressing public health problems."
+Public health officials and the White House have voiced serious concerns that overuse of these vital medicines is contributing to the rise of bacteria that are resistant to them, and the CDC calls it "one of the worlds most pressing public health problems."
 
-Many agricultural giants have come under fire for giving persistent, low doses of antibiotics to animals in order to promote weight gain. (Scientists don't fully understand why these drugs boost growth.) Sanderson claims the company only uses the drugs to prevent illness — it injects the drug bacitracin along with vaccines into chicken eggs to kill salmonella — and to treat animals that become sick, according to guidance from the FDA.
+Many agricultural giants have come under fire for giving persistent, low doses of antibiotics to animals in order to promote weight gain. (Scientists don't fully understand why these drugs boost growth.) Sanderson claims the company only uses the drugs to prevent illness  it injects the drug bacitracin along with vaccines into chicken eggs to kill salmonella  and to treat animals that become sick, according to guidance from the FDA.
 
 While the CDC estimates 20% of drug-resistant infections in people are caused by infection from food and animals, Sanderson Farms CFO Mike Cockrell told BuzzFeed News, "The science simply doesn't support the notion that what we're doing on the farm is contributing to the development of antibiotic resistant bacteria in humans."
 
@@ -22,9 +22,9 @@ Cockrell's comment echoes a statement Sanderson Farms released in January called
 Some producers and researchers, Smith said, are exploiting a weakness in the chain linking the development of resistant bacteria on farms to sicknesses in humans. The bacteria can spread from animals to farm workers, to people who come into contact with the workers, and so forth, and years can pass before anyone gets sick. So "the infection can be hard to link back to farms," she said.
 
 While Sanderson's statement "contradicts almost all scientific evidence," Smith said, "They can use that as an out because we don't have that smoking gun."
-Antibiotic resistant germs emerge when drugs are used — on animals or humans — killing bacteria except those that are resistant to the drug, according to a CDC resource called "Antibiotic Resistance from the Farm to the Table." Those resistant bacteria then multiply and can contaminate food when animals are slaughtered and processed.
+Antibiotic resistant germs emerge when drugs are used  on animals or humans  killing bacteria except those that are resistant to the drug, according to a CDC resource called "Antibiotic Resistance from the Farm to the Table." Those resistant bacteria then multiply and can contaminate food when animals are slaughtered and processed.
 
-Cockrell said Sanderson doesn't deny the rise of drug-resistant bacteria — "It's like climate change, there is absolutely no argument about that anymore," Cockrell said.
+Cockrell said Sanderson doesn't deny the rise of drug-resistant bacteria  "It's like climate change, there is absolutely no argument about that anymore," Cockrell said.
 
 However, he contends that it's human overuse, not animal use, of antibiotics that is the leading factor in creating resistance, and maintains that Sanderson already complies with the FDA's tightened guidance.
 

@@ -14,7 +14,7 @@ Tesla never got to see his wireless world, unfortunately, but he'd be happy to k
 We've seen progress over recent years in the distance power can be transmitted, with even the entertainment giant Disney recently investigating the possibility of having an entire room that can charge devices within it.
 In this particular case, the researchers started with technology developed by engineers from MIT a decade ago, who managed to transmit around 60 watts of power with around 40 percent efficiency to a stationary object over 2 metres away.
 The problem is the frequency of the moving magnetic field is what causes the current to flow, and if an object is moving or is at the wrong angle, it won't create the highest current.
-This can be overcome if the circuit is "tuned" as it moves — a complex process that itself would require powering.
+This can be overcome if the circuit is "tuned" as it moves  a complex process that itself would require powering.
 To solve this problem, the researchers used a simpler system of a voltage amplifier and a feedback resistor that automatically adjusted the voltage based on the response it gets from the receiving circuit.
 "Adding the amplifier and resistor allows power to be very efficiently transferred across most of the three-foot (1 metre) range and despite the changing orientation of the receiving coil," said lead researcher Sid Assawaworrarit.
 "This eliminates the need for automatic and continuous tuning of any aspect of the circuits."

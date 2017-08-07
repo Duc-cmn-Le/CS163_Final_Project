@@ -1,14 +1,14 @@
 Introduction to Graphs and Their Data Structures: Section 1
 Section 1: Recognizing and Representing a Graph
 Introduction
-Graphs are a fundamental data structure in the world of programming, and this is no less so on topcoder. Usually appearing as the hard problem in Division 2, or the medium or hard problem in Division 1, there are many different forms solving a graph problem can take. They can range in difficulty from finding a path on a 2D grid from a start location to an end location, to something as hard as finding the maximum amount of water that you can route through a set of pipes, each of which has a maximum capacity (also known as the maximum-flow minimum-cut problem – which we will discuss later). Knowing the correct data structures to use with graph problems is critical. A problem that appears intractable may prove to be a few lines with the proper data structure, and luckily for us the standard libraries of the languages used by topcoder help us a great deal here!
+Graphs are a fundamental data structure in the world of programming, and this is no less so on topcoder. Usually appearing as the hard problem in Division 2, or the medium or hard problem in Division 1, there are many different forms solving a graph problem can take. They can range in difficulty from finding a path on a 2D grid from a start location to an end location, to something as hard as finding the maximum amount of water that you can route through a set of pipes, each of which has a maximum capacity (also known as the maximum-flow minimum-cut problem  which we will discuss later). Knowing the correct data structures to use with graph problems is critical. A problem that appears intractable may prove to be a few lines with the proper data structure, and luckily for us the standard libraries of the languages used by topcoder help us a great deal here!
 
 Recognizing a graph problem
-The first key to solving a graph related problem is recognizing that it is a graph problem. This can be more difficult than it sounds, because the problem writers don’t usually spell it out for you. Nearly all graph problems will somehow use a grid or network in the problem, but sometimes these will be well disguised. Secondly, if you are required to find a path of any sort, it is usually a graph problem as well. Some common keywords associated with graph problems are: vertices, nodes, edges, connections, connectivity, paths, cycles and direction. An example of a description of a simple problem that exhibits some of these characteristics is:
+The first key to solving a graph related problem is recognizing that it is a graph problem. This can be more difficult than it sounds, because the problem writers dont usually spell it out for you. Nearly all graph problems will somehow use a grid or network in the problem, but sometimes these will be well disguised. Secondly, if you are required to find a path of any sort, it is usually a graph problem as well. Some common keywords associated with graph problems are: vertices, nodes, edges, connections, connectivity, paths, cycles and direction. An example of a description of a simple problem that exhibits some of these characteristics is:
 
-"Bob has become lost in his neighborhood. He needs to get from his current position back to his home. Bob’s neighborhood is a 2 dimensional grid, that starts at (0, 0) and (width – 1, height – 1). There are empty spaces upon which bob can walk with no difficulty, and houses, which Bob cannot pass through. Bob may only move horizontally or vertically by one square at a time.
+"Bob has become lost in his neighborhood. He needs to get from his current position back to his home. Bobs neighborhood is a 2 dimensional grid, that starts at (0, 0) and (width  1, height  1). There are empty spaces upon which bob can walk with no difficulty, and houses, which Bob cannot pass through. Bob may only move horizontally or vertically by one square at a time.
 
-Bob’s initial position will be represented by a ‘B’ and the house location will be represented by an ‘H’. Empty squares on the grid are represented by ‘.’ and houses are represented by ‘X’. Find the minimum number of steps it takes Bob to get back home, but if it is not possible for Bob to return home, return -1.
+Bobs initial position will be represented by a B and the house location will be represented by an H. Empty squares on the grid are represented by . and houses are represented by X. Find the minimum number of steps it takes Bob to get back home, but if it is not possible for Bob to return home, return -1.
 
 An example of a neighborhood of width 7 and height 5:
 
@@ -24,7 +24,7 @@ Graphs can represent many different types of systems, from a two-dimensional gri
 
 For those that are used to the mathematical description of graphs, a graph G = {V, E} is defined as a set of vertices, V, and a collection of edges (which is not necessarily a set), E. An edge can then be defined as (u, v) where u and v are elements of V. There are a few technical terms that it would be useful to discuss at this point as well:
 
-Order – The number of vertices in a graph Size – The number of edges in a graph
+Order  The number of vertices in a graph Size  The number of edges in a graph
 
 Singly linked lists
 An example of one of the simplest types of graphs is a singly linked list! Now we can start to see the power of the graph data structure, as it can represent very complicated relationships, but also something as simple as a list.
@@ -42,7 +42,7 @@ structure node
       head.next = B;
       B.next = C;
       C.next = null;
-      This would be represented graphically as head -> B -> C -> null. I’ve used null here to represent the end of a list.
+      This would be represented graphically as head -> B -> C -> null. Ive used null here to represent the end of a list.
 
       Getting back to the concept of a cost function, our cost function would look as follows:
     This cost function represents the fact that we can only move directly to the link node from our current node. Get used to seeing cost functions because anytime that you encounter a graph problem you will be dealing with them in some form or another! A question that you may be asking at this point is "Wait a second, the cost from A to C would return not possible, but I can get to C from A by stepping through B!" This is a very valid point, but the cost function simply encodes the *direct* cost from a node to another. We will cover how to find distances in generic graphs later on.
@@ -59,7 +59,7 @@ structure node
 
           node originalChild;
           With a cost function of:
-Here we can see that every node has a mother and father. And since node is a recursive structure definition, every mother has mother and father, and every father has a mother and father, and so on. One of the problems here is that it might be possible to form a loop if you actually represented this data structure on a computer. And a tree clearly cannot have a loop. A little mind exercise will make this clear: a father of a child is also the son of that child? It’s starting to make my head hurt already. So you have to be very careful when constructing a tree to make sure that it is truly a tree structure, and not a more general graph. A more formal definition of a tree is that it is a connected acyclic graph. This simply means that there are no cycles in the graph and every node is connected to at least one other node in the graph.
+Here we can see that every node has a mother and father. And since node is a recursive structure definition, every mother has mother and father, and every father has a mother and father, and so on. One of the problems here is that it might be possible to form a loop if you actually represented this data structure on a computer. And a tree clearly cannot have a loop. A little mind exercise will make this clear: a father of a child is also the son of that child? Its starting to make my head hurt already. So you have to be very careful when constructing a tree to make sure that it is truly a tree structure, and not a more general graph. A more formal definition of a tree is that it is a connected acyclic graph. This simply means that there are no cycles in the graph and every node is connected to at least one other node in the graph.
 
 Another thing to note is that we could imagine a situation easily where the tree requires more than two node references, for example in an organizational hierarchy, you can have a manager who manages many people then the CEO manages many managers. Our example above was what is known as a binary tree, since it only has two node references. Next we will move onto constructing a data structure that can represent a general graph!
 

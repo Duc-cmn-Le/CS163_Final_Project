@@ -15,7 +15,7 @@ Welcoming Boaty McBoatface back from its first mission, Universities and Science
 
 Researchers used a combination of specialised instruments including those deployed from the ship as well as instruments moored to the seafloor and measurements made by Boaty.
 
-The submersible completed three missions during the expedition, the longest lasting three days, travelling more than 180km and reaching depths of nearly 4,000m. It travelled back and forth through an abyssal current of Antarctic Bottom Water along the Orkney Passage, sometimes in water colder than 0°C and in currents up to 1 knot, while measuring the intensity of the turbulence.
+The submersible completed three missions during the expedition, the longest lasting three days, travelling more than 180km and reaching depths of nearly 4,000m. It travelled back and forth through an abyssal current of Antarctic Bottom Water along the Orkney Passage, sometimes in water colder than 0C and in currents up to 1 knot, while measuring the intensity of the turbulence.
 
 This current forms off the coast of Antarctica as cold winds off the ice sheet cool the sea surface. The resulting cold, dense water sinks and moves northwards, forming an important part of the global circulation of ocean water. The Orkney Passage is a key chokepoint that AABW has to navigate on its way from Antarctica's Weddell Sea to the Atlantic Ocean.
 

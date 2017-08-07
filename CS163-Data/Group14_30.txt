@@ -1,5 +1,5 @@
 Bar of the future: Can The Bletchley crack the code?
-(CNN) — An air raid siren wails in a smoky London basement as cryptologists in military uniform are hard at work cracking codes.
+(CNN)  An air raid siren wails in a smoky London basement as cryptologists in military uniform are hard at work cracking codes.
 It could easily be a scene from World War II, except everyone's slinging back cocktails.
 This is The Bletchley, a subterranean bar on the fringes of London's upscale Chelsea district that's been styled to resemble Britain's wartime code-breaking headquarters -- a world of Bakelite telephones, mind-boggling equations scrawled on chalkboards, and stiff upper lips.
 The real Bletchley Park -- portrayed in the 2015 movie "The Imitation Game," starring Benedict Cumberbatch -- tasked prototype computers and the country's top analytical brains with cracking the Enigma code used by Nazi Germany.

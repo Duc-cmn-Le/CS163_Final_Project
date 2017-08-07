@@ -1,14 +1,14 @@
-An Oxford University artificial intelligence startup has raised £17 million to check code for errors
+An Oxford University artificial intelligence startup has raised 17 million to check code for errors
 
-DiffBlue, an artificial intelligence startup spun out of Oxford University, has raised $22 million (£17.3 million) in Series A funding for technology which checks and corrects code.
+DiffBlue, an artificial intelligence startup spun out of Oxford University, has raised $22 million (17.3 million) in Series A funding for technology which checks and corrects code.
 The round was led by Goldman Sachs Principal Strategic Investments, alongside Oxford Sciences Innovations and the Oxford Technology and Innovations Fund.
 The company was cofounded by an Oxford computer science professor, Daniel Kroening, and Sussex computer science professor Peter Schrammel. The startup claims to "understand" code, meaning it can carry out coding tasks considered too repetitive and boring for human developers.
 One example is testing developers' code for bugs.
 Currently, human developers have to write their own test code to find any bugs in their software. It is, according to DiffBlue cofounder Daniel Kroening, something programmers tend to dislike because it's labour-intensive and less satisfying than coding itself. He explained that it's a little like asking a schoolchild to stand up and read their essay in front of the class, then to explain everything that's wrong with it. Or at least, that's how developers feel.
-"None of this is objectively true," he added. "Tests have enormous value because users don’t want to use buggy software. Nevertheless, this sort of thing gets a developer really very grumpy."
+"None of this is objectively true," he added. "Tests have enormous value because users dont want to use buggy software. Nevertheless, this sort of thing gets a developer really very grumpy."
 Business Insider asked how this might be different from a kind of spellcheck for code, something which surely seems easy enough.
-"Tests aren't about spellchecking, they're about meaning," Kroening said. "It's like entrusting articles you write to spellcheck. If you say the president of the USA is Donald Duck, it's factually wrong, but spellchecker won’t flag it up.
-"Tests aren’t meant to find typos, they’re meant to identify misbehaviour. That’s the same as a sentence not making sense, syntactically."
+"Tests aren't about spellchecking, they're about meaning," Kroening said. "It's like entrusting articles you write to spellcheck. If you say the president of the USA is Donald Duck, it's factually wrong, but spellchecker wont flag it up.
+"Tests arent meant to find typos, theyre meant to identify misbehaviour. Thats the same as a sentence not making sense, syntactically."
 This is where AI comes in, because it requires intelligence to generalise from patterns.
  Kroening told Business Insider the eventual goal was to allow illiterate people to program.
 "The way I like to get [people] interested is by saying you have a computer that improves itself, or thinks about its own programming," he said.

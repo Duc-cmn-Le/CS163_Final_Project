@@ -1,4 +1,5 @@
 #pragma once
+#include <ctype.h>
 #include <cmath>
 #include <vector>
 #include <string>
@@ -22,7 +23,8 @@ struct details {
 };
 class Node {
 public:
-    Node *next[256] = {NULL};
+    Node() {for (int i=0;i<256;++i) next[i] = NULL;}
+    Node *next[256];
     details *info = NULL; // info is a linkedlist
     int point = 0;
 };
@@ -46,3 +48,4 @@ struct Data {
 
 void Open_file(istream &,string &,string &);
 void Free_file(char *&,char*&);
+int FILTERING(string file_name);

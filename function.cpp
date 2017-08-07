@@ -81,3 +81,16 @@ void Free_file(char*& title, char*& content) {
     delete []title;
     delete []content;
 }
+
+int FILTERING(string file_name) { 
+    ifstream fin("CS163-Data/"+file_name);
+    ofstream fout("tmpfileout.txt",ofstream::out);
+    char c; int res = 0;
+    while (fin.get(c)) 
+        if (isascii(c)) fout << c;
+        else res = 1;
+    fin.close();
+    fout.close();
+    system(("mv tmpfileout.txt CS163-Data/"+file_name).c_str());
+    return res;
+}

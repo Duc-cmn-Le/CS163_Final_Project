@@ -14,13 +14,13 @@ What we are actually interested in is the probability of a certain event to occu
 
 That is, the probability of an event to occur is calculated by dividing the number of favorable outcomes (according to the event E) by the total number of outcomes (according to the sample space S). In order to represent the relationships among events, you can apply the known principles of set theory. Consider the experiment of rolling a die once. As we have seen previously, the sample space is S = {1, 2, 3, 4, 5, 6}. Let's now consider the following events:
 
-The first step when trying to solve a probability problem is to be able to recognize the sample space. After that, you basically have to determine the number of favorable outcomes. This is the classical approach, but the way we implement it may vary from problem to problem. Let's take a look at QuizShow (SRM 223, Div 1 – Easy). The key to solving this problem is to take into account all the possibilities, which are not too many. After a short analysis, we determine the sample space to be the following:
+The first step when trying to solve a probability problem is to be able to recognize the sample space. After that, you basically have to determine the number of favorable outcomes. This is the classical approach, but the way we implement it may vary from problem to problem. Let's take a look at QuizShow (SRM 223, Div 1  Easy). The key to solving this problem is to take into account all the possibilities, which are not too many. After a short analysis, we determine the sample space to be the following:
 
 The problem asks you to find a wager that maximizes the number of favorable outcomes. In order to compute the number of favorable outcomes for a certain wager, we need to determine how many points the three players end with for each of the 8 possible outcomes. The idea is illustrated in the following program:
 
-Another good problem to start with is PipeCuts (SRM 233, Div 1 – Easy). This can be solved in a similar manner. There is a finite number of outcomes and all you need to do is to consider them one by one.
+Another good problem to start with is PipeCuts (SRM 233, Div 1  Easy). This can be solved in a similar manner. There is a finite number of outcomes and all you need to do is to consider them one by one.
 
-Let's now consider a series of n independent events: E1, E2, … , En. Two surprisingly common questions that may appear (and many of you have already encountered) are the following:
+Let's now consider a series of n independent events: E1, E2,  , En. Two surprisingly common questions that may appear (and many of you have already encountered) are the following:
 
 What is the probability that all events will occur?
 What is the probability that at least one event will occur?
@@ -33,8 +33,8 @@ These formulae are very useful and you should try to understand them well before
 Randomized Algorithms
 We call randomized algorithms those algorithms that use random numbers to make decisions during their execution. Unlike deterministic algorithms that for a fixed input always give the same output and the same running-time, a randomized algorithm behaves differently from execution to execution. Basically, we distinguish two kind of randomized algorithms:
 
-Monte Carlo algorithms: may sometimes produce an incorrect solution – we bound the probability of failure.
-Las Vegas algorithms: always give the correct solution, the only variation is the running time – we study the distribution of the running time.
+Monte Carlo algorithms: may sometimes produce an incorrect solution  we bound the probability of failure.
+Las Vegas algorithms: always give the correct solution, the only variation is the running time  we study the distribution of the running time.
 Read these lecture notes from the College of Engineering at UIUC for an example of how these algorithms work.
 
 The main goal of randomized algorithms is to build faster, and perhaps simpler solutions. Being able to tackle "harder" problems is also a benefit of randomized algorithms. As a result, these algorithms have become a research topic of major interest and have already been utilized to more easily solve many different problems.

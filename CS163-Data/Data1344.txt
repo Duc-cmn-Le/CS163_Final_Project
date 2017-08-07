@@ -12,7 +12,7 @@ Bato and her collaborators are among the first to test whether data assimilation
 
 In their latest research, Bato and her colleagues have begun answering these questions by simulating one type of volcano -- those which erupt with limited "explosivity" due to the build-up of underlying magma pressure. Through their exploratory simulations, Bato was able to correctly predict the excess pressure that drives a theoretical volcanic eruption, as well as the shape of the deepest underground magma reservoir and the flow rate of magma into the reservoir. Such reservoirs are typically miles below the surface and, as such, they're nearly impossible to study with existing methods.
 
-Geoscientists still need to improve current volcanic models before they can be widely applied to real-life volcanoes, but Bato and her colleagues are already beginning to test their methods on the Grímsvötn Volcano in Iceland and the Okmok Volcano in Alaska. They believe that their strategy will be a key step towards more accurate predictions of volcanic behavior.
+Geoscientists still need to improve current volcanic models before they can be widely applied to real-life volcanoes, but Bato and her colleagues are already beginning to test their methods on the Grmsvtn Volcano in Iceland and the Okmok Volcano in Alaska. They believe that their strategy will be a key step towards more accurate predictions of volcanic behavior.
 
 "We foresee a future where daily or even hourly volcanic forecasts will be possible -- just like any other weather bulletin," says Bato.
 

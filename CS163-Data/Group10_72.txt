@@ -3,7 +3,7 @@ Kingston University London experts will explore how an artificial vision system 
 
 The three-year research project, in collaboration with King's College London and University College London, will examine how data from these state-of-the-art cameras could be captured, compressed and transmitted between machines at a fraction of the current energy cost.
 
-The £1.3m Engineering and Physical Sciences Research Council-funded project will see academics working with newly-developed dynamic visual sensors, which drastically reduce computing power and data storage requirements by only updating the parts of an image where movement occurs.
+The 1.3m Engineering and Physical Sciences Research Council-funded project will see academics working with newly-developed dynamic visual sensors, which drastically reduce computing power and data storage requirements by only updating the parts of an image where movement occurs.
 
 These neuromorphic sensors mimic how mammals' eyes process information, quickly and efficiently detecting light changes in their field of vision, explained Professor Maria Martini, who is leading the Kingston University London team looking at innovative ways to process and transmit information secured through the sensors during the project.
 

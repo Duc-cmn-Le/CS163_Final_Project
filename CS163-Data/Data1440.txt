@@ -23,7 +23,7 @@ Writing on Kapersky's blog the mobile threats expert, said: 'By analysing these 
 'It means that these Trojans may not only open ad urls, or send Premium rate SMS, but also open web-pages with WAP billing and steal money from a user's account.
 'To hide these activities the Trojans turn off the device sound and delete all incoming SMS.
 'Most likely, the attackers are publishing Ztorg modules to make some additional money while they are trying to upload the regular rooting Ztorg Trojan.
-'I suggest this because one of the malicious apps had an encrypted Ztorg module but it wasn’t able to decrypt it.'
+'I suggest this because one of the malicious apps had an encrypted Ztorg module but it wasnt able to decrypt it.'
 Mr Unuchek previously uncovered a similar rooting malware called DVmap in a game 
 One app Noise Detector, which was installed on more than 10,000 devices, claimed to be able to measure the decibel level of sounds (pictured)
 Another app Magic Browser (pictured) was uploaded on May 15 and was downloaded over 50,000 times. Both were infected with the Ztorg trojan horse software

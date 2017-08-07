@@ -9,11 +9,11 @@ Statement of the Problem
 Suppose we have a directed network G = (V, E) defined by a set V of nodes (or vertexes) and a set E of arcs (or edges). Each arc (i,j) in E has an associated nonnegative capacity uij. Also we distinguish two special nodes in G: a source node s and a sink node t. For each i in V we denote by E(i) all the arcs emanating from node i. Let U = max uij by (i,j) in E. Let us also denote the number of vertexes by n and the number of edges by m.
 
 We wish to find the maximum flow from the source node s to the sink node t that satisfies the arc capacities and mass balance constraints at all nodes. Representing the flow on arc (i,j) in E by xij we can obtain the optimization model for the maximum flow problem:
-Vector (xij) which satisfies all constraints is called a feasible solution or, a flow (it is not necessary maximal). Given a flow x we are able to construct the residual network with respect to this flow according to the following intuitive idea. Suppose that an edge (i,j) in E carries xij units of flow. We define the residual capacity of the edge (i,j) as rij = uij – xij. This means that we can send an additional rij units of flow from vertex i to vertex j. We can also cancel the existing flow xij on the arc if we send up xij units of flow from j to i over the arc (i,j).
+Vector (xij) which satisfies all constraints is called a feasible solution or, a flow (it is not necessary maximal). Given a flow x we are able to construct the residual network with respect to this flow according to the following intuitive idea. Suppose that an edge (i,j) in E carries xij units of flow. We define the residual capacity of the edge (i,j) as rij = uij  xij. This means that we can send an additional rij units of flow from vertex i to vertex j. We can also cancel the existing flow xij on the arc if we send up xij units of flow from j to i over the arc (i,j).
 
 So, given a feasible flow x we define the residual network with respect to the flow x as follows. Suppose we have a network G = (V, E). A feasible solution x engenders a new (residual) network, which we define by Gx = (V, Ex), where Ex is a set of residual edges corresponding to the feasible solution x.
 
-What is Ex? We replace each arc (i,j) in E by two arcs (i,j), (j,i): the arc (i,j) has (residual) capacity rij = uij – xij, and the arc (j,i) has (residual) capacity rji=xij. Then we construct the set Ex from the new edges with a positive residual capacity.
+What is Ex? We replace each arc (i,j) in E by two arcs (i,j), (j,i): the arc (i,j) has (residual) capacity rij = uij  xij, and the arc (j,i) has (residual) capacity rji=xij. Then we construct the set Ex from the new edges with a positive residual capacity.
 
 Augmenting Path Algorithms as a whole
 In this section we describe one method on which all augmenting path algorithms are being based. This method was developed by Ford and Fulkerson in 1956 [3]. We start with some important definitions.
@@ -49,7 +49,7 @@ It is easy to determine that the method described above works correctly. Under a
 With those preparations behind us, we are ready to begin discussing the algorithms.
 
 Shortest Augmenting Path Algorithm, O(n2m)
-In 1972 Edmonds and Karp — and, in 1970, Dinic — independently proved that if each augmenting path is shortest one, the algorithm will perform O(nm) augmentation steps. The shortest path (length of each edge is equal to one) can be found with the help of breadth-first search (BFS) algorithm [2], [6]. Shortest Augmenting Path Algorithm is well known and widely discussed in many books and articles, including [5], which is why we will not describe it in great detail.
+In 1972 Edmonds and Karp  and, in 1970, Dinic  independently proved that if each augmenting path is shortest one, the algorithm will perform O(nm) augmentation steps. The shortest path (length of each edge is equal to one) can be found with the help of breadth-first search (BFS) algorithm [2], [6]. Shortest Augmenting Path Algorithm is well known and widely discussed in many books and articles, including [5], which is why we will not describe it in great detail.
 
 The algorithm was said to perform O(nm) steps of finding an augmenting path. Using BFS, which requires O(m) operation in the worst case, one can obtain O(nm2) complexity of the algorithm itself. If m ~ n2 then one must use BFS procedure O(n3) times in worst case. There are some networks on which this numbers of augmentation steps is being achieved. We will show one simple example below.
 
@@ -84,7 +84,7 @@ Since the improved shortest augmenting path algorithm makes augmentations along 
 
 Theorem 2. The improved shortest augmenting path algorithm runs in O(n2m) time.
 
-Ahuja and Orlin [1] suggest one very useful practical improvement of the algorithm. Since the algorithm performs many useless relabel operations while the maximum flow has been found, it will be better to give an additional criteria of terminating. Let's introduce (n+1)-dimensional additional array, numbs, whose indices vary from 0 to n. The value numbs(k) is the number of nodes whose distance label equals k. The algorithm initializes this array while computing the initial distance labels using BFS. At this point, the positive entries in the array numbs are consecutive (i.e., numbs(0), numbs(1), …, numbs(l) will be positive up to some index l and the remaining entries will all be zero).
+Ahuja and Orlin [1] suggest one very useful practical improvement of the algorithm. Since the algorithm performs many useless relabel operations while the maximum flow has been found, it will be better to give an additional criteria of terminating. Let's introduce (n+1)-dimensional additional array, numbs, whose indices vary from 0 to n. The value numbs(k) is the number of nodes whose distance label equals k. The algorithm initializes this array while computing the initial distance labels using BFS. At this point, the positive entries in the array numbs are consecutive (i.e., numbs(0), numbs(1), , numbs(l) will be positive up to some index l and the remaining entries will all be zero).
 
 When the algorithm increases a distance label of a node from x to y, it subtracts 1 from numbs(x), adds 1 to numbs(y) and checks whether numbs(x) = 0. If it does equal 0, the algorithm terminates.
 
@@ -95,13 +95,13 @@ In this section we identify the worst case for both shortest augmenting path alg
 
 In the worst case both improved and unimproved algorithms will perform O(n3) augmentations, if m ~ n2. Norman Zadeh [4] developed some examples on which this running time is based. Using his ideas we compose a somewhat simpler network on which the algorithms have to perform O(n3) augmentations and which is not dependent on a choice of next path.
 
-All vertexes except s and t are divided into four subsets: S={s1,…,sk}, T={t1,…,tk}, U={u1,…,u2p} and V={v1,…,v2p}. Both sets S and T contain k nodes while both sets U and V contain 2p nodes. k and p are fixed integers. Each bold arc (connecting S and T) has unit capacity. Each dotted arc has an infinite capacity. Other arcs (which are solid and not straight) have capacity k.
+All vertexes except s and t are divided into four subsets: S={s1,,sk}, T={t1,,tk}, U={u1,,u2p} and V={v1,,v2p}. Both sets S and T contain k nodes while both sets U and V contain 2p nodes. k and p are fixed integers. Each bold arc (connecting S and T) has unit capacity. Each dotted arc has an infinite capacity. Other arcs (which are solid and not straight) have capacity k.
 
-First, the shortest augmenting path algorithm has to augment flow k2 time along paths (s, S, T, t) which have length equal to 3. The capacities of these paths are unit. After that the residual network will contain reversal arcs (T, S) and the algorithm will chose another k2 augmenting paths (s, u1, u2, T, S, v2, v1, t) of length 7. Then the algorithm will have to choose paths (s, u1, u2, u3, u4, S, T, v4, v3, v2, v1, t) of length 11 and so on…
+First, the shortest augmenting path algorithm has to augment flow k2 time along paths (s, S, T, t) which have length equal to 3. The capacities of these paths are unit. After that the residual network will contain reversal arcs (T, S) and the algorithm will chose another k2 augmenting paths (s, u1, u2, T, S, v2, v1, t) of length 7. Then the algorithm will have to choose paths (s, u1, u2, u3, u4, S, T, v4, v3, v2, v1, t) of length 11 and so on
 
 Now let's calculate the parameters of our network. The number of vertexes is n = 2k + 4p + 2. The number of edges is m = k2 + 2pk + 2k + 4p. As it easy to see, the number of augmentations is a = k2 (p+1).
 
-Consider that p = k – 1. In this case n = 6k – 2 and a = k3. So, one can verify that a ~ n3 / 216. In [4] Zadeh presents examples of networks that require n3 / 27 and n3 / 12 augmentations, but these examples are dependent on a choice of the shortest path.
+Consider that p = k  1. In this case n = 6k  2 and a = k3. So, one can verify that a ~ n3 / 216. In [4] Zadeh presents examples of networks that require n3 / 27 and n3 / 12 augmentations, but these examples are dependent on a choice of the shortest path.
 
 We made 5 worst-case tests with 100, 148, 202, 250 and 298 vertexes and compared the running times of the improved version of the algorithm against the unimproved one. As you can see on figure 2, the improved algorithm is much faster. On the network with 298 nodes it works 23 times faster. Practice analysis shows us that, in general, the improved algorithm works n / 14 times faster.
 
@@ -126,15 +126,15 @@ Theorem 3. The maximum capacity path algorithm performs O(m log (nU)) augmentati
 
 Sketch to proof. Suppose that the algorithm terminates after k augmentations. Let's denote by f1 the capacity of the first found augmentation path, by f2 the capacity of the second one, and so on. fk will be the capacity of the latter k-th augmenting path.
 
-Consider, Fi = f1 + f2 +…+ fi. Let F* be the maximum flow's value. Under lemma 3 one can justify that
+Consider, Fi = f1 + f2 ++ fi. Let F* be the maximum flow's value. Under lemma 3 one can justify that
 
 fi >= (F*-Fi-1) / m.
 
 Now we can estimate the difference between the value of the maximal flow and the flow after i consecutive augmentations:
 
-F* – Fi = F* - Fi-1 – fi = F* – Fi-1 – (F* - Fi-1) / m = (1 – 1 / m) (F* – Fi-1) = … = (1 – 1 / m)i _ F*
+F*  Fi = F* - Fi-1  fi = F*  Fi-1  (F* - Fi-1) / m = (1  1 / m) (F*  Fi-1) =  = (1  1 / m)i _ F*
 
-We have to find such an integer i, which gives (1 – 1 / m)i _ F* < 1. One can check that
+We have to find such an integer i, which gives (1  1 / m)i _ F* < 1. One can check that
 
 i log m / (m+1) F* = O(m _ log F*) = O(m _ log(nU))
 
@@ -175,7 +175,7 @@ Now let's look at each Delta-phase independently. Recall from the preceding sect
 Unfortunately, this improvement hardly decreases the running time of the algorithm in practice.
 
 Practical Analysis and Comparison
-Now let's have some fun. In this section we compare all described algorithms from practical point of view. With this purpose I have made some test cases with the help of [8] and divided them into three groups by density. The first group of tests is made of networks with m = n1.4 – some kind of sparse networks. The second one consists of middle density tests with n1.6 = m = n1.7. And the last group represents some kinds of almost full graphs (including full acyclic networks) with m >= n1.85.
+Now let's have some fun. In this section we compare all described algorithms from practical point of view. With this purpose I have made some test cases with the help of [8] and divided them into three groups by density. The first group of tests is made of networks with m = n1.4  some kind of sparse networks. The second one consists of middle density tests with n1.6 = m = n1.7. And the last group represents some kinds of almost full graphs (including full acyclic networks) with m >= n1.85.
 
 I have simple implementations of all algorithms described before. I realized these algorithms without any kind of tricks and with no preference towards any of them. All implementations use adjacency list for representing a network.
 
@@ -187,7 +187,7 @@ Now let's look at the second group of test cases. It is made of 184 tests with m
 
 On the middle density networks the binary search implementation of the maximum capacity path algorithm leaves much to be desired, but the heap implementation still works faster than the simple (without heap) one. The BFS realization of the capacity scaling algorithm is faster than the DFS one. The improved scaling algorithm and the improved shortest augmenting path algorithm are both very good in this case.
 
-It is very interesting to see how these algorithms run on dense networks. Let's take a look — the third group is made up of 200 dense networks limited by 400 vertexes.
+It is very interesting to see how these algorithms run on dense networks. Let's take a look  the third group is made up of 200 dense networks limited by 400 vertexes.
 
 Now we see the difference between the BFS and DFS versions of the capacity scaling algorithm. It is interesting that the improved realization works in approximately the same time as the unimproved one. Unexpectedly, the Dijkstra's with heap implementation of the maximum capacity path algorithm turned out to be faster than one without heap.
 

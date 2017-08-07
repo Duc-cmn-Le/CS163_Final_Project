@@ -17,7 +17,7 @@ Nature provided the reference for the development of the new process. In biologi
 
 Cornered hydronium ions
 
-But, do cramped quarters really increase the reactivity? To answer this question, Lercher's team compared the reactions of carbon compounds with acids in a beaker to the same reactions in zeolites. The result: In the crystal cavities, where the reacting molecules, for example alcohols, meet upon the hydronium ions of the acids, reactions run up to 100 times faster and at temperatures just over 100 °C.
+But, do cramped quarters really increase the reactivity? To answer this question, Lercher's team compared the reactions of carbon compounds with acids in a beaker to the same reactions in zeolites. The result: In the crystal cavities, where the reacting molecules, for example alcohols, meet upon the hydronium ions of the acids, reactions run up to 100 times faster and at temperatures just over 100 C.
 
 "Our experiments demonstrate that zeolites as catalysts are similarly effective as enzymes: Both significantly reduce the energy levels required by the reactions," reports Lercher. "The smaller the cavity, the larger the catalytic effect. We achieved the best results with diameters far below one nanometer."
 
