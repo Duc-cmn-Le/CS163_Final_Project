@@ -31,7 +31,7 @@ struct Trie{
     void Destruct(details*);
     void Destruct(Node*);
     Node *root = new Node;
-    void Insert(char*,int,int); // word, file_id, pos_in_content
+    void Insert(const char*,int,int); // word, file_id, pos_in_content
     Node *Find(char*);
 
 };

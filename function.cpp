@@ -18,7 +18,7 @@ void Trie::Destruct(Node *cur) {
     delete cur;
 }
 
-void Trie::Insert(char* s,int file_id,int pos) {
+void Trie::Insert(const char* s,int file_id,int pos) {
     Node *cur = root;
     for (int i=0;i<strlen(s);++i) {
         if (cur->next[s[i]] == NULL)
