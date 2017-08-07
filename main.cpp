@@ -35,7 +35,7 @@ int main() {
     Trie T_content;    
     int is_acceptable_char[256] = {0};
     is_acceptable_char['$'] = is_acceptable_char['#'] = is_acceptable_char['@'] = 1;
-    is_acceptable_char['&'] = is_acceptable_char['*'] = 1;
+    is_acceptable_char['&'] = is_acceptable_char['*'] = is_acceptable_char['%'] = 1;
     for (int i='0';i<='9';++i) is_acceptable_char[i] = 2;
             // - - - - 
             //
@@ -103,8 +103,9 @@ int main() {
     while (getline(fin,String))
         T_stop.Insert(String.c_str(),0,0);
     fin.close();
+    T_stop.Show_trie(T_stop.root);
 //    freopen("test.out","w",stdout);
-    T_title.Show_trie(T_title.root);
+//    T_title.Show_trie(T_title.root);
 //    T_content.Show_trie(T_content.root);
     // Free memory
     for (int i=0;i<number_of_file;++i) 
