@@ -48,7 +48,6 @@ hasn't
 have
 haven't
 having
-<<<<<<< HEAD
 he
 he'd
 he'll
@@ -173,5 +172,3 @@ your
 yours
 yourself
 yourselves
-=======
->>>>>>> giabao
