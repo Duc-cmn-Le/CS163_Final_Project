@@ -45,19 +45,23 @@ int main() {
         int len=strlen(xau);
         string tmp;
         for(int j=0;j<len;j++)
-        if (is_acceptable_char[xau[j]] == 1)
-            T_title.Insert(xau+j,i,j);
+        if (is_acceptable_char[xau[j]] == 1) {
+            tmp=xau[j];
+            T_title.Insert(tmp.c_str(),i,j);
+        }
         else if (isalnum(xau[j])) {
             tmp=tolower(xau[j]);
             int k=j;
             while (j<len-1)
-            if (isalnum(xau[++j]) || xau[j]=='\'')
+            if (isalnum(xau[++j]) || xau[j]=='\'' || xau[j]=='-')
                 tmp+=tolower(xau[j]);
             else break;
-            if (is_acceptable_char[xau[j]] == 1)
-                T_title.Insert(xau+j,i,j);
+            if (is_acceptable_char[xau[j]] == 1) {
+                string temp=xau[j];
+                T_title.Insert(temp.c_str(),i,j);
+            }
             T_title.Insert(tmp.c_str(),i,k);
-            if (*(tmp.end()-1)=='\'') {
+            if (!isalnum(tmp[tmp.size()-1])) {
                 tmp.erase(tmp.end()-1);
                 T_title.Insert(tmp.c_str(),i,k);
             }
@@ -66,19 +70,23 @@ int main() {
 //        /*
         len=strlen(chuoi);
         for(int j=0;j<len;j++)
-        if (is_acceptable_char[chuoi[j]] == 1)
-            T_content.Insert(chuoi+j,i,j);
+        if (is_acceptable_char[chuoi[j]] == 1) {
+            tmp=chuoi[j];
+            T_content.Insert(tmp.c_str(),i,j);
+        }
         else if (isalnum(chuoi[j])) {
             tmp=tolower(chuoi[j]);
             int k=j;
             while (j<len-1)
-            if (isalnum(chuoi[++j]) || chuoi[j]=='\'')
+            if (isalnum(chuoi[++j]) || chuoi[j]=='\'' || chuoi[j]=='-')
                 tmp+=tolower(chuoi[j]);
             else break;
-            if (is_acceptable_char[chuoi[j]] == 1)
-                T_content.Insert(chuoi+j,i,j);
+            if (is_acceptable_char[chuoi[j]] == 1) {
+                string temp=chuoi[j];
+                T_content.Insert(temp.c_str(),i,j);
+            }
             T_content.Insert(tmp.c_str(),i,k);
-            if (*(tmp.end()-1)=='\'') {
+            if (!isalnum(tmp[tmp.size()-1])) {
                 tmp.erase(tmp.end()-1);
                 T_content.Insert(tmp.c_str(),i,k);
             }
