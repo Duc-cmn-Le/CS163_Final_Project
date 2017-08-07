@@ -33,12 +33,19 @@ int main() {
     
     // Indexing words in database
     Trie T_title, T_content;    
+    int is_acceptable_char[256] = {0};
+    is_acceptable_char['$'] = is_acceptable_char['#'] = is_acceptable_char['@'] = 1;
+    is_acceptable_char['&'] = is_acceptable_char['*'] = 1;
+    for (int i='0';i<='9';++i) is_acceptable_char[i] = 2;
+            // - - - - 
+            //
     for(int i=0;i<number_of_file;i++) {
         //Title
         int len=strlen(xau);
         string tmp;
         for(int j=0;j<len;j++)
-        if (xau[j]=='$' || xau[j]=='#' || xau[j]=='@' || xau[j]=='&' || xau[j]=='*')
+//        if (xau[j]=='$' || xau[j]=='#' || xau[j]=='@' || xau[j]=='&' || xau[j]=='*')
+        if (is_acceptable_char[xau[j]])
             T_title.Insert(xau+j,i,j);
         else if (isalnum(xau[j])) {
             tmp=tolower(xau[j]);
@@ -47,7 +54,8 @@ int main() {
             if (isalnum(xau[++j]) || xau[j]=='\'')
                 tmp+=tolower(xau[j]);
             else break;
-            if (xau[j]=='$' || xau[j]=='#' || xau[j]=='@' || xau[j]=='&' || xau[j]=='*')
+//            if (xau[j]=='$' || xau[j]=='#' || xau[j]=='@' || xau[j]=='&' || xau[j]=='*')
+            if (is_acceptable_char[xau[j]])
                 T_title.Insert(xau+j,i,j);
             T_title.Insert(tmp.c_str(),i,k);
             if (*(tmp.end()-1)=='\'') {
@@ -58,7 +66,8 @@ int main() {
         //Content
         len=strlen(chuoi);
         for(int j=0;j<len;j++)
-        if (chuoi[j]=='$' || chuoi[j]=='#' || chuoi[j]=='@' || chuoi[j]=='&' || chuoi[j]=='*')
+//        if (chuoi[j]=='$' || chuoi[j]=='#' || chuoi[j]=='@' || chuoi[j]=='&' || chuoi[j]=='*')
+        if (is_acceptable_char[chuoi[j]])
             T_content.Insert(chuoi+j,i,j);
         else if (isalnum(chuoi[j])) {
             tmp=tolower(chuoi[j]);
@@ -67,7 +76,8 @@ int main() {
             if (isalnum(chuoi[++j]) || chuoi[j]=='\'')
                 tmp+=tolower(chuoi[j]);
             else break;
-            if (chuoi[j]=='$' || chuoi[j]=='#' || chuoi[j]=='@' || chuoi[j]=='&' || chuoi[j]=='*')
+//            if (chuoi[j]=='$' || chuoi[j]=='#' || chuoi[j]=='@' || chuoi[j]=='&' || chuoi[j]=='*')
+            if (is_acceptable_char[chuoi[j]])
                 T_content.Insert(chuoi+j,i,j);
             T_content.Insert(tmp.c_str(),i,k);
             if (*(tmp.end()-1)=='\'') {
