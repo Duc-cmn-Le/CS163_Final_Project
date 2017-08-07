@@ -94,3 +94,25 @@ int FILTERING(string file_name) {
     system(("mv tmpfileout.txt CS163-Data/"+file_name).c_str());
     return res;
 }
+
+int Check_all_space(string &s) {
+    for (string::iterator i=s.begin();i!=s.end();++i)
+        if (*i != ' ' && *i != '\n') return false;
+    return true;
+}
+
+int Next_token(string &s,string &target,char c) {
+    if (s.length() == 0) return false;
+    target = "";
+    int cnt = 0;
+    for (string::iterator i=s.begin();i!=s.end();++i,++cnt) {
+        if (*i == c) {
+            target.insert(target.begin(),s.begin(),i);
+            s.erase(0,cnt+1);
+            return true;
+        }
+    }
+    target = s;
+    s = "";
+    return true;
+}

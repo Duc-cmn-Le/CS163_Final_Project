@@ -1,6 +1,7 @@
 #include "function.hpp"
 #define xau database[i].title
 #define chuoi database[i].content
+#define ZERO(x) for (int i=0;i<number_of_file;++i) *(x+i) = 0;
 
 int main() {
     int number_of_file;
@@ -43,6 +44,7 @@ int main() {
     for (int i='0';i<='9';++i) is_acceptable_char[i] = 2;
             // - - - - 
             //
+    /*
     for(int i=0;i<number_of_file;i++) {
         //Title
         int len=strlen(xau);
@@ -104,22 +106,36 @@ int main() {
             }
         }
     }
+    */
     //add stopwords
     Trie T_stop;
     fin.open("stopwords.txt");
     while (getline(fin,String))
         T_stop.Insert(String.c_str(),0,0);
     fin.close();
-//    freopen("test.out","w",stdout);
-    T_title.Show_trie(T_title.root);
-//    T_content.Show_trie(T_content.root);
-    cout << setw(50) << "\033[1;4;34mSEARCH ENGINE\033[0m\n";     
+    // ---- end
 
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    /****/ cout << setw(50) << "\033[1;4;34mSEARCH ENGINE\033[0m\n"; // ||
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    int *rating = new int [number_of_file];
+    int *ranking = new int [number_of_file];
+    int *good = new int [number_of_file]; // -1 means not good
+    String = "";
+    while ((cout << "> ") && (getline(cin,String)) && (String != "quit_")) {
+        if (String == "\n" || String == "" || Check_all_space(String)) continue;
+        ZERO(ranking); ZERO(rating); ZERO(good);
+         
+    }
+    cout << "Exiting\n";
 
     ///  FREE MEMORY
     // - - -
     for (int i=0;i<number_of_file;++i) 
         Free_file(database[i].title,database[i].content);
     delete []database;
+    delete []rating;
+    delete []ranking;
+    delete []good;
     return 0;
 }

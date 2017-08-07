@@ -49,3 +49,5 @@ struct Data {
 void Open_file(istream &,string &,string &);
 void Free_file(char *&,char*&);
 int FILTERING(string file_name);
+int Check_all_space(string &s);
+int Next_token(string &s,string &target,char c=' ');
