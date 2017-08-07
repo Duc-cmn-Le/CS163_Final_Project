@@ -11,6 +11,7 @@
 
 #define DEBUG(x) cout << x
 #define DEBUN(x) cout << x << '\n'
+#define equal =
 
 using namespace std;
 
@@ -33,6 +34,7 @@ struct Trie{
     Node *root = new Node;
     void Insert(const char*,int,int); // word, file_id, pos_in_content
     Node *Find(char*);
+    void Show_trie(Node *cur,string s ="");
 
 };
 

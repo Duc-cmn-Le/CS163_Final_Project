@@ -13,7 +13,6 @@ int main() {
     Data *database = new Data[number_of_file];
     system("ls CS163-Data > file.tmp");
     fin.open("file.tmp");
-        number_of_file = 1;
     // Storing database
     string title, content;
     for (int i=0;i<number_of_file;++i) {  
@@ -32,20 +31,21 @@ int main() {
     // - - - - End
     
     // Indexing words in database
-    Trie T_title, T_content;    
+    Trie T_title;
+    Trie T_content;    
     int is_acceptable_char[256] = {0};
     is_acceptable_char['$'] = is_acceptable_char['#'] = is_acceptable_char['@'] = 1;
     is_acceptable_char['&'] = is_acceptable_char['*'] = 1;
     for (int i='0';i<='9';++i) is_acceptable_char[i] = 2;
             // - - - - 
             //
+        number_of_file equal 1;
     for(int i=0;i<number_of_file;i++) {
         //Title
         int len=strlen(xau);
         string tmp;
         for(int j=0;j<len;j++)
-//        if (xau[j]=='$' || xau[j]=='#' || xau[j]=='@' || xau[j]=='&' || xau[j]=='*')
-        if (is_acceptable_char[xau[j]])
+        if (is_acceptable_char[xau[j]] == 1)
             T_title.Insert(xau+j,i,j);
         else if (isalnum(xau[j])) {
             tmp=tolower(xau[j]);
@@ -54,8 +54,7 @@ int main() {
             if (isalnum(xau[++j]) || xau[j]=='\'')
                 tmp+=tolower(xau[j]);
             else break;
-//            if (xau[j]=='$' || xau[j]=='#' || xau[j]=='@' || xau[j]=='&' || xau[j]=='*')
-            if (is_acceptable_char[xau[j]])
+            if (is_acceptable_char[xau[j]] == 1)
                 T_title.Insert(xau+j,i,j);
             T_title.Insert(tmp.c_str(),i,k);
             if (*(tmp.end()-1)=='\'') {
@@ -64,10 +63,10 @@ int main() {
             }
         }
         //Content
+//        /*
         len=strlen(chuoi);
         for(int j=0;j<len;j++)
-//        if (chuoi[j]=='$' || chuoi[j]=='#' || chuoi[j]=='@' || chuoi[j]=='&' || chuoi[j]=='*')
-        if (is_acceptable_char[chuoi[j]])
+        if (is_acceptable_char[chuoi[j]] == 1)
             T_content.Insert(chuoi+j,i,j);
         else if (isalnum(chuoi[j])) {
             tmp=tolower(chuoi[j]);
@@ -76,8 +75,7 @@ int main() {
             if (isalnum(chuoi[++j]) || chuoi[j]=='\'')
                 tmp+=tolower(chuoi[j]);
             else break;
-//            if (chuoi[j]=='$' || chuoi[j]=='#' || chuoi[j]=='@' || chuoi[j]=='&' || chuoi[j]=='*')
-            if (is_acceptable_char[chuoi[j]])
+            if (is_acceptable_char[chuoi[j]] == 1)
                 T_content.Insert(chuoi+j,i,j);
             T_content.Insert(tmp.c_str(),i,k);
             if (*(tmp.end()-1)=='\'') {
@@ -85,10 +83,11 @@ int main() {
                 T_content.Insert(tmp.c_str(),i,k);
             }
         }
+//        */
     }
-
-
-    
+//    freopen("test.out","w",stdout);
+    T_title.Show_trie(T_title.root);
+//    T_content.Show_trie(T_content.root);
     // Free memory
     for (int i=0;i<number_of_file;++i) 
         Free_file(database[i].title,database[i].content);

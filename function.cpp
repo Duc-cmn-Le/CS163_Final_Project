@@ -54,12 +54,27 @@ Node* Trie::Find(char *s) {
     return cur;
 }
 
+void Trie::Show_trie(Node *cur,string s) {
+    if (cur->point > 0) {
+        details *info_cur = cur->info;
+        while (info_cur != NULL) {
+            for (vector<int>::iterator i=info_cur->pos.begin();i!=info_cur->pos.end();++i)
+                cout << info_cur->file_id << ' ' << s << ' ' << *i << '\n';
+            info_cur = info_cur->next;
+        }
+    }
+    for (int i=0;i<256;++i)
+        if (cur->next[i] != NULL) Show_trie(cur->next[i],s+(char)i);
+}
+
 void Open_file(istream &fin,string &title,string &content) {
     content = "";
     string s;
     getline(fin,title);
-    while (getline(fin,s))
+    while (getline(fin,s)) {
+        content += ' ';
         content += s;
+    }
 }
 
 void Free_file(char*& title, char*& content) {
