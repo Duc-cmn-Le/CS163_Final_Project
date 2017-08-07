@@ -46,7 +46,8 @@ int main() {
         string tmp;
         for(int j=0;j<len;j++)
         if (is_acceptable_char[xau[j]] == 1) {
-            tmp=xau[j];
+            tmp="^";
+            tmp[0]=xau[j];
             T_title.Insert(tmp.c_str(),i,j);
         }
         else if (isalnum(xau[j])) {
@@ -57,7 +58,8 @@ int main() {
                 tmp+=tolower(xau[j]);
             else break;
             if (is_acceptable_char[xau[j]] == 1) {
-                string temp=xau[j];
+                string temp="^";
+                temp[0]=xau[j];
                 T_title.Insert(temp.c_str(),i,j);
             }
             T_title.Insert(tmp.c_str(),i,k);
@@ -71,7 +73,8 @@ int main() {
         len=strlen(chuoi);
         for(int j=0;j<len;j++)
         if (is_acceptable_char[chuoi[j]] == 1) {
-            tmp=chuoi[j];
+            tmp="^";
+            tmp[0]=chuoi[j];
             T_content.Insert(tmp.c_str(),i,j);
         }
         else if (isalnum(chuoi[j])) {
@@ -82,7 +85,8 @@ int main() {
                 tmp+=tolower(chuoi[j]);
             else break;
             if (is_acceptable_char[chuoi[j]] == 1) {
-                string temp=chuoi[j];
+                string temp="^";
+                temp[0]=chuoi[j];
                 T_content.Insert(temp.c_str(),i,j);
             }
             T_content.Insert(tmp.c_str(),i,k);
