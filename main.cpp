@@ -93,6 +93,12 @@ int main() {
         }
 //        */
     }
+    //add stopwords
+    Trie T_stop;
+    fin.open("stopwords.txt");
+    while (getline(fin,String))
+        T_stop.Insert(String.c_str(),0,0);
+    fin.close();
 //    freopen("test.out","w",stdout);
     T_title.Show_trie(T_title.root);
 //    T_content.Show_trie(T_content.root);
