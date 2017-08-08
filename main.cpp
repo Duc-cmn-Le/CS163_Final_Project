@@ -1,7 +1,7 @@
 #include "function.hpp"
 #define xau database[i].title
 #define chuoi database[i].content
-#define ZERO(x) for (int i=0;i<number_of_file;++i) *(x+i) = 0;
+
 
 int main() {
     int number_of_file;
@@ -20,7 +20,7 @@ int main() {
     for (int i=0;i<number_of_file;++i) {  
         fin >> String;
         strcpy(database[i].filename,String.c_str());
-//        FILTERING(String);
+        FILTERING(String);
         fin_2.open("CS163-Data/"+String);
         Open_file(fin_2,title,content);
         database[i].title = new char [title.length()];
@@ -44,7 +44,7 @@ int main() {
     for (int i='0';i<='9';++i) is_acceptable_char[i] = 2;
             // - - - - 
             //
-    /*
+//    /*
     for(int i=0;i<number_of_file;i++) {
         //Title
         int len=strlen(xau);
@@ -106,7 +106,7 @@ int main() {
             }
         }
     }
-    */
+//    */
     //add stopwords
     Trie T_stop;
     fin.open("stopwords.txt");
@@ -118,22 +118,51 @@ int main() {
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /****/ cout << setw(50) << "\033[1;4;34mSEARCH ENGINE\033[0m\n"; // ||
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+//    int *file_list = new int [number_of_file];
+//    for (int i=0;i<number_of_file;++i) file_list[i] = i;
     int *rating = new int [number_of_file];
     int *ranking = new int [number_of_file];
+        for (int i=0;i<number_of_file;++i) ranking[i] = i;
     int *good = new int [number_of_file]; // -1 means not good
     String = "";
+    /* This program will support these queries
+     * AND 
+     * OR 
+     * Manchester -united
+     * intitle:hammer nails
+     * Peanut Butter +and Jam
+     * filetype:txt
+     * $400
+     * $throwbackthursday
+     * "tallest building"
+     *
+     *
+     *
+     *
+     *
+     *
+     */
+//    /*
+    string s;
     while ((cout << "> ") && (getline(cin,String)) && (String != "quit_")) {
         if (String == "\n" || String == "" || Check_all_space(String)) continue;
-        ZERO(ranking); ZERO(rating); ZERO(good);
+        ZERO(rating); 
          
+
+
     }
     cout << "Exiting\n";
+//    */
+
+    T_title.Show_trie(T_title.root); 
+    cout << database[0].content;
 
     ///  FREE MEMORY
     // - - -
     for (int i=0;i<number_of_file;++i) 
         Free_file(database[i].title,database[i].content);
     delete []database;
+//    delete []file_list;
     delete []rating;
     delete []ranking;
     delete []good;
