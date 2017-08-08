@@ -227,25 +227,20 @@ void Search_Engine::Partition(int L,int H) {
 }
 
 int Search_Engine::Next_token(string &s,string &target,char c){
-    if (s.length() == 0) return false;
+      if (s.length() == 0) return false;
     target = "";
-    int ok = 0, cnt = 0;
+    int cnt = 0, start = -1; string::iterator st;
     for (string::iterator i=s.begin();i!=s.end();++i,++cnt) {
-        if (*i == c) {
-            target.insert(target.begin(),s.begin(),i);
+        if (start == -1 && *i != c) start = cnt, st = i;
+        if ((*i == c) && start != -1) { 
+            target.insert(target.begin(),st,i);
             s.erase(0,cnt+1);
             return true;
         }
-        /*
-        if (*i != c) 
-            target += *i, ok = 1;
-        else if (ok) return true;
-        s.erase(i);
-        */
     }
-//    return s.length() > 0;
     target = s;
     s = "";
+    while (target[0] == c) target.erase(0,1);
     return true;
 }
 
