@@ -174,6 +174,8 @@ int FILTERING(string file_name) {
 }
 
 int Check_all_space(string &s) {
+    for (string::iterator i=s.begin()+1;i!=s.end();++i)
+        if (*i == ' ' && *(i-1) == ' ') s.erase(i-1);
     for (string::iterator i=s.begin();i!=s.end();++i)
         if (*i != ' ' && *i != '\n') return false;
     return true;
@@ -184,15 +186,17 @@ int Check_all_space(string &s) {
 int Next_token(string &s,string &target,char c) {
     if (s.length() == 0) return false;
     target = "";
-    int cnt = 0;
+    int cnt = 0, start = -1; string::iterator st;
     for (string::iterator i=s.begin();i!=s.end();++i,++cnt) {
-        if ((*i == c || *i == '\n') && *(i-1) != c) {
-            target.insert(target.begin(),s.begin(),i);
+        if (start == -1 && *i != c) start = cnt, st = i;
+        if ((*i == c) && start != -1) { 
+            target.insert(target.begin(),st,i);
             s.erase(0,cnt+1);
             return true;
         }
     }
     target = s;
     s = "";
+    while (target[0] == c) target.erase(0,1);
     return true;
 }
