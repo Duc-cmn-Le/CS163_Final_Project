@@ -73,6 +73,17 @@ int Trie::iFind(char *s) {
 }
 
 // Cong Duc
+int Trie::iFind(const char *s) {
+    Node *cur = root;
+    for (int i=0;i<strlen(s);++i) {
+        if (cur->next[s[i]] == NULL)
+            return false;
+        cur = cur->next[s[i]];
+    }
+    return cur->point > 0;
+}
+
+// Cong Duc
 Node* Trie::Find(char *s) {
     Node *cur = root;
     for (int i=0;i<strlen(s);++i) {
@@ -84,7 +95,18 @@ Node* Trie::Find(char *s) {
 }
 
 // Cong Duc
-int Query(int flag,Trie T,char *word,int *rating,int &number_of_file) {
+Node* Trie::Find(const char *s) {
+    Node *cur = root;
+    for (int i=0;i<strlen(s);++i) {
+        if (cur->next[s[i]] == NULL)
+            return NULL;
+        cur = cur->next[s[i]];
+    }
+    return cur;
+}
+
+// Cong Duc
+int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file) {
     // flag
     // OR - 0
     // AND - 1
@@ -164,7 +186,7 @@ int Next_token(string &s,string &target,char c) {
     target = "";
     int cnt = 0;
     for (string::iterator i=s.begin();i!=s.end();++i,++cnt) {
-        if (*i == c) {
+        if ((*i == c || *i == '\n') && *(i-1) != c) {
             target.insert(target.begin(),s.begin(),i);
             s.erase(0,cnt+1);
             return true;

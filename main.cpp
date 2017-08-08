@@ -20,7 +20,7 @@ int main() {
     for (int i=0;i<number_of_file;++i) {  
         fin >> String;
         strcpy(database[i].filename,String.c_str());
-        FILTERING(String);
+//        FILTERING(String);
         fin_2.open("CS163-Data/"+String);
         Open_file(fin_2,title,content);
         database[i].title = new char [title.length()];
@@ -44,7 +44,7 @@ int main() {
     for (int i='0';i<='9';++i) is_acceptable_char[i] = 2;
             // - - - - 
             //
-//    /*
+    /*
     for(int i=0;i<number_of_file;i++) {
         //Title
         int len=strlen(xau);
@@ -106,7 +106,7 @@ int main() {
             }
         }
     }
-//    */
+    */
     //add stopwords
     Trie T_stop;
     fin.open("stopwords.txt");
@@ -142,18 +142,25 @@ int main() {
      *
      *
      */
-//    /*
-    string s;
+    /*
+    string s, s2; int flag, first;
+    Trie* TT = &T_content;
     while ((cout << "> ") && (getline(cin,String)) && (String != "quit_")) {
         if (String == "\n" || String == "" || Check_all_space(String)) continue;
         ZERO(rating); 
-         
-
-
+        Next_token(String,s);
+        Query(0,*TT,s.c_str(),rating,number_of_file);
+        first = true;
+        while (Next_token(
     }
     cout << "Exiting\n";
-//    */
-
+    */
+    string a, b;
+    getline(cin,a);
+    Next_token(a,b);
+    cout << b;
+    Next_token(a,b);
+    cout << b;
     ///  FREE MEMORY
     // - - -
     for (int i=0;i<number_of_file;++i) 
