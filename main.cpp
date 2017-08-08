@@ -154,9 +154,6 @@ int main() {
     cout << "Exiting\n";
 //    */
 
-    T_title.Show_trie(T_title.root); 
-    cout << database[0].content;
-
     ///  FREE MEMORY
     // - - -
     for (int i=0;i<number_of_file;++i) 

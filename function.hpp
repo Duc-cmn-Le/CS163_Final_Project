@@ -38,10 +38,9 @@ struct Trie{
     void Destruct(details*);
     void Destruct(Node*);
     void Insert(const char*,int,int); // word, file_id, pos_in_content
-    int Find(char*);
-    Node *Find(char*);
     void Show_trie(Node *cur,string s ="");
-
+    int iFind(char*);
+    Node *Find(char*);
 };
 
 struct Data {
@@ -50,10 +49,9 @@ struct Data {
     char *content = NULL;
 };
 
-int Query(int flag,Trie T,char *word,int *rating,int &number_of_file) {
+int Query(int flag,Trie T,char *word,int *rating,int &number_of_file); 
 void Open_file(istream &,string &,string &);
 void Free_file(char *&,char*&);
 int FILTERING(string file_name);
 int Check_all_space(string &s);
 int Next_token(string &s,string &target,char c=' ');
-bool compare_by_rating(int,int);
