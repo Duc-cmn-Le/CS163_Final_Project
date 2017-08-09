@@ -146,6 +146,7 @@ int main() {
 //    freopen("test.out","w",stdout);
 
     string s, s2, ss; int flag, first, n_input, intitle = 0;
+    string file_type = "";
     char *TITLE = new char [10];
     strcpy(TITLE,"intitle:");
     Trie* TT;
@@ -164,10 +165,11 @@ int main() {
         n_input = input.size();
         for (int i=0;i<input.size();++i) {
             if (flag == -1) {
-                if (input[i] == "and") flag = 1;
-                if (input[i] == "or") flag = 0;
+                if (input[i] == "and" || input[i] == "AND") flag = 1;
+                if (input[i] == "or" || input[i] == "OR") flag = 0;
             }
             if (T_stop.iFind(input[i].c_str())) continue;
+            if (input[i] == "AND" || input[i] == "OR") continue;
             // intitle:
             if (input[i].length() > 7) {
                 int is_ok = 1;
@@ -225,6 +227,7 @@ int main() {
             }
         }
         if (count == 0) cout << "Not found!\n";
+        else cout << count << " files\n";
     }
     cout << "Exiting\n";
 
