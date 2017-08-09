@@ -130,7 +130,7 @@ int main() {
      * AND 
      * OR 
      * Manchester -united
-   - * intitle:hammer nails
+     * intitle:hammer nails
      * Peanut Butter +and Jam
    - * filetype:txt
      * $400 
@@ -145,7 +145,9 @@ int main() {
      */
 //    freopen("test.out","w",stdout);
 
-    string s, s2, ss; int flag, first, n_input;
+    string s, s2, ss; int flag, first, n_input, intitle = 0;
+    char *TITLE = new char [10];
+    strcpy(TITLE,"intitle:");
     Trie* TT = &T_content;
     vector<string> input;
     while ((cout << "> ") && (getline(cin,String)) && (String != ":quit_")) {
@@ -165,16 +167,24 @@ int main() {
                 if (input[i] == "or") flag = 0;
             }
             if (T_stop.iFind(input[i].c_str())) continue;
+            // intitle:
+            if (input[i].length() > 7) {
+                int is_ok = 1;
+                for (int j=0;j<8;++j)
+                    if (input[i][j] != TITLE[j]) is_ok = 0;
+                if (is_ok) intitle = 1, TT = &T_title;
+                Next_token(input[i],s2,':');
+            }
             if (first) {
                 if (n_input > 1 && input[i+1] == "and") flag = 1;
                 else flag = 0;
-                Query(flag,*TT,input[i].c_str(),rating,number_of_file,database);
+                Query(flag,*TT,input[i].c_str(),rating,number_of_file,database,intitle);
                 first = 0;
                 flag = -1;
             }
             else {
                 if (flag == 0 || flag == 1)  
-                    Query(flag,*TT,input[i].c_str(),rating,number_of_file,database);
+                    Query(flag,*TT,input[i].c_str(),rating,number_of_file,database,intitle);
                 else {
                     if (input[i][0] == '-') {
                         input[i].erase(0,1);
@@ -185,7 +195,7 @@ int main() {
                         flag = 2;
                     }
                     else flag = 0;
-                    Query(flag,*TT,input[i].c_str(),rating,number_of_file,database);
+                    Query(flag,*TT,input[i].c_str(),rating,number_of_file,database,intitle);
                 }
                 flag = -1;
             }
@@ -223,6 +233,7 @@ int main() {
     delete []rating;
     delete []ranking;
     delete []good;
+    delete []TITLE;
     T_stop.Destruct();
     T_content.Destruct();
     T_title.Destruct();

@@ -148,7 +148,7 @@ Node* Trie::Find(char c,const char* word,Data *&database,int intitle)
 
 
 // Cong Duc
-int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file,Data *&database) {
+int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file,Data *&database,int intitle) {
     // flag
     // OR - 0
     // AND - 1

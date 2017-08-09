@@ -54,7 +54,7 @@ struct Trie{
 };
 
 
-int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file,Data *&); 
+int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file,Data *&,int intitle); 
 void Open_file(istream &,string &,string &);
 void Free_file(char *&,char*&);
 int FILTERING(string file_name);
