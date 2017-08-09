@@ -21,7 +21,7 @@ int main() {
     for (int i=0;i<number_of_file;++i) {  
         fin >> String;
         strcpy(database[i].filename,String.c_str());
-//        FILTERING(String);
+        FILTERING(String);
         fin_2.open("CS163-Data/"+String);
         Open_file(fin_2,title,content);
         database[i].title = new char [title.length()+1];
@@ -148,10 +148,11 @@ int main() {
     string s, s2, ss; int flag, first, n_input, intitle = 0;
     char *TITLE = new char [10];
     strcpy(TITLE,"intitle:");
-    Trie* TT = &T_content;
+    Trie* TT;
     vector<string> input;
     while ((cout << "> ") && (getline(cin,String)) && (String != ":quit_")) {
         if (String == "\n" || String == "" || Check_all_space(String)) continue;
+        TT = &T_content; intitle = 0;
         ss = String;
         input.clear();
         ZERO(rating); 
@@ -172,8 +173,10 @@ int main() {
                 int is_ok = 1;
                 for (int j=0;j<8;++j)
                     if (input[i][j] != TITLE[j]) is_ok = 0;
-                if (is_ok) intitle = 1, TT = &T_title;
-                Next_token(input[i],s2,':');
+                if (is_ok) {
+                    intitle = 1, TT = &T_title;
+                    Next_token(input[i],s2,':');
+                }
             }
             if (first) {
                 if (n_input > 1 && input[i+1] == "and") flag = 1;

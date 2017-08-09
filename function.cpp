@@ -162,7 +162,7 @@ int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file,Data 
             s += word[i];
         char *ss = new char [s.length()];
         strcpy(ss,s.c_str());
-        _find = KMP(ss,database,number_of_file,(flag == 5));
+        _find = KMP(ss,database,number_of_file,intitle);
         delete []ss;
     }
     else 
@@ -347,9 +347,9 @@ Node* KMP(char *s,Data *&data,int number_of_file,int intitle) {
             while (k >= 0 && tolower(s[k+1]) != tolower(p[i])) k = f[k];
             if (tolower(s[k+1]) == tolower(p[i])) k++;
             if (k == m-1) {
-                if (!((p[i+1] >= 'a' && p[i+1] <= 'z') ||
-                        (p[i+1] >= '0' && p[i+1] <= '9') ||
-                        (p[i+1] >= 'A' && p[i+1] <= 'Z') ))
+//                if (!((p[i+1] >= 'a' && p[i+1] <= 'z') ||
+//                        (p[i+1] >= '0' && p[i+1] <= '9') ||
+//                        (p[i+1] >= 'A' && p[i+1] <= 'Z') ))
                     point[_]++;
                 k = f[k];
             }
