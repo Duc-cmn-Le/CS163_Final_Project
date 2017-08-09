@@ -34,7 +34,7 @@ public:
 
 struct Trie{
     Node *root = new Node;
-    ~Trie();
+    void Destruct();
     void Destruct(details*);
     void Destruct(Node*);
     void Insert(const char*,int,int); // word, file_id, pos_in_content
@@ -57,3 +57,7 @@ void Free_file(char *&,char*&);
 int FILTERING(string file_name);
 int Check_all_space(string &s);
 int Next_token(string &s,string &target,char c=' ');
+void ToLower(string &s);
+void Sort_by_rating(int*,int*,int);
+void Partition(int*,int*,int,int);
+void Show(int,char*);

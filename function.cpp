@@ -1,7 +1,8 @@
 #include "function.hpp"
 
-Trie::~Trie() {
-
+// Cong Duc
+void Trie::Destruct() {
+    Destruct(root);
 }
 
 // Cong Duc
@@ -130,12 +131,13 @@ int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file) {
     }
     else if (flag == 0 || flag == 2) {
         for (int i=0;i<number_of_file;++i)
-            if (rating[i] > 0) rating[i] += cnt[i];
+            if (rating[i] >= 0)
+                rating[i] += cnt[i];
     }
     else if (flag == 1) {
         for (int i=0;i<number_of_file;++i)
-            if (cnt[i] == 0) rating = 0;
-            else if (rating[i] > 0) rating[i] += cnt[i];
+            if (cnt[i] == 0) rating[i] = -oo;
+            else if (rating[i] >= 0) rating[i] += cnt[i];
     }
     delete []cnt;
     return 0;
@@ -174,8 +176,6 @@ int FILTERING(string file_name) {
 }
 
 int Check_all_space(string &s) {
-    for (string::iterator i=s.begin()+1;i!=s.end();++i)
-        if (*i == ' ' && *(i-1) == ' ') s.erase(i-1);
     for (string::iterator i=s.begin();i!=s.end();++i)
         if (*i != ' ' && *i != '\n') return false;
     return true;
@@ -185,18 +185,80 @@ int Check_all_space(string &s) {
 // Cong Duc
 int Next_token(string &s,string &target,char c) {
     if (s.length() == 0) return false;
+    if (Check_all_space(s)) {s = ""; return false;}
     target = "";
-    int cnt = 0, start = -1; string::iterator st;
+    string res;
+    int cnt = 0, start = -1, exact = 0; string::iterator st;
     for (string::iterator i=s.begin();i!=s.end();++i,++cnt) {
         if (start == -1 && *i != c) start = cnt, st = i;
         if ((*i == c) && start != -1) { 
-            target.insert(target.begin(),st,i);
-            s.erase(0,cnt+1);
-            return true;
+            if (exact == 0) {
+                target.insert(target.begin(),st,i);
+                for (int j=0;j<=cnt;++j)
+                    if (s[j] == '"') exact++;
+                if (exact == 2) {
+                    s.erase(0,cnt+1); 
+                    return true;
+                }
+                if (exact == 1) {
+                    c = '"'; res = target + ' '; 
+                    continue;
+                }
+                else {
+                    s.erase(0,cnt+1);
+                    return true;
+                }
+            }
+            else {
+                target = "";
+                target.insert(target.begin(),st,i+1);
+                s.erase(0,cnt+1);
+                return true;
+            }
         }
     }
     target = s;
     s = "";
     while (target[0] == c) target.erase(0,1);
+    if (exact) {
+        res += target;
+        target = res+'"';
+    }
     return true;
+}
+
+void ToLower(string &s) {
+    for (int i=0;i<s.length();++i)
+        if (s[i] >= 'A' && s[i] <= 'Z')
+            s[i] = s[i]-'A'+'a';
+}   
+
+// Cong Duc
+void Sort_by_rating(int *ranking,int *rating,int number_of_file) {
+    Partition(ranking,rating,0,number_of_file-1);
+}
+
+// Cong Duc
+void Partition(int *ranking,int *rating,int L,int H) {
+    if (L >= H) return;
+    int k = ranking[(L+H)/2];
+    int i = L, j = H;
+    do {
+        while (rating[ranking[i]] > rating[k]) i++;
+        while (rating[ranking[j]] < rating[k]) j--;
+        if (i <= j) {
+            if (i < j)
+                swap(ranking[i], ranking[j]);
+            i++; j--;
+        }
+    } 
+    while (i <= j);
+    Partition(ranking,rating,L,j); Partition(ranking,rating,i,H);
+}
+
+
+void Show(int n,char *s) {
+    int Min = (n < strlen(s)) ? n : strlen(s);
+    for (int i=0;i<Min;++i)
+        cout << s[i];
 }

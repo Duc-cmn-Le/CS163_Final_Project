@@ -44,7 +44,7 @@ int main() {
     for (int i='0';i<='9';++i) is_acceptable_char[i] = 2;
             // - - - - 
             //
-    /*
+//    /*
     for(int i=0;i<number_of_file;i++) {
         //Title
         int len=strlen(xau);
@@ -106,7 +106,7 @@ int main() {
             }
         }
     }
-    */
+//    */
     //add stopwords
     Trie T_stop;
     fin.open("stopwords.txt");
@@ -114,12 +114,10 @@ int main() {
         T_stop.Insert(String.c_str(),0,0);
     fin.close();
     // ---- end
-
+    cout << "\033[1;37mType :quit_ to exit\033[0m\n";
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     /****/ cout << setw(50) << "\033[1;4;34mSEARCH ENGINE\033[0m\n"; // ||
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-//    int *file_list = new int [number_of_file];
-//    for (int i=0;i<number_of_file;++i) file_list[i] = i;
     int *rating = new int [number_of_file];
     int *ranking = new int [number_of_file];
         for (int i=0;i<number_of_file;++i) ranking[i] = i;
@@ -142,32 +140,90 @@ int main() {
      *
      *
      */
-//    /*
-    string s, s2; int flag, first;
+//    freopen("test.out","w",stdout);
+    string s, s2, ss; int flag, first, n_input;
     Trie* TT = &T_content;
-    while ((cout << "> ") && (getline(cin,String)) && (String != "quit_")) {
+    vector<string> input;
+    while ((cout << "> ") && (getline(cin,String)) && (String != ":quit_")) {
         if (String == "\n" || String == "" || Check_all_space(String)) continue;
+        ss = String;
+        input.clear();
         ZERO(rating); 
-        Next_token(String,s);
-        cout << s << "|\n";
-        while(Next_token(String,s))
-            cout << s << "|\n";
-        cout << '\n';
-        Query(0,*TT,s.c_str(),rating,number_of_file);
-        first = true;
+        while (Next_token(String,s)) input.push_back(s);
+        for (vector<string>::iterator i=input.begin();i!=input.end();++i)
+            ToLower(*i);
+        //
+        first = true; flag = -2;
+        n_input = input.size();
+        for (int i=0;i<input.size();++i) {
+            if (flag == -1) {
+                if (input[i] == "and") flag = 1;
+                if (input[i] == "or") flag = 0;
+            }
+            if (T_stop.iFind(input[i].c_str())) continue;
+            if (first) {
+                if (n_input > 1 && input[i+1] == "and") flag = 1;
+                else flag = 0;
+                Query(flag,*TT,input[i].c_str(),rating,number_of_file);
+//                    for (int t=0;t<number_of_file;++t)
+//                        cout << "rating " << i << '=' << rating[t] << '\n';
+                first = 0;
+                flag = -1;
+            }
+            else {
+                if (flag == 0 || flag == 1)  
+                    Query(flag,*TT,input[i].c_str(),rating,number_of_file);
+                else {
+                    if (input[i][0] == '-') {
+                        input[i].erase(0,1);
+                        flag = -oo;
+                    }
+                    else if (input[i][0] == '+') {
+                        input[i].erase(0,1);
+                        flag = 2;
+                    }
+                    else flag = 0;
+                    Query(flag,*TT,input[i].c_str(),rating,number_of_file);
+                }
+                flag = -1;
+            }
+
+        }
+        // hello algorithm and trump or duc -united 
+        Sort_by_rating(ranking,rating,number_of_file);
+        int count = 0;
+        cout << "\033[1;32m" << ss << "\033[0m" << '\n'; 
+        cout << left  << setw(27) << "\033[1;31m Rank (Score)\033[0m";
+        cout << left << setw(28) << "\033[1;36mFilename\033[0m";
+        cout << "\033[33mTitle\033[0m\n";
+        for (int i=0;i<number_of_file;++i) {
+            if (rating[ranking[i]] > 0) {
+                cout << "\033[1;31m";
+                cout.width(4); cout << right << i+1; cout << "). ";
+                cout << setw(8) << left << rating[ranking[i]] << " \033[0m";
+                cout << "\033[1;36m" << setw(17) << left << database[ranking[i]].filename;
+                cout << "\033[33m";
+                Show(100,database[ranking[i]].title);
+                if (strlen(database[ranking[i]].title) > 100) cout << "...";
+                cout << "\033[0m\n";
+                count++;
+            }
+            if (count == 0) cout << "Not found!\n";
+        }
+            
     }
     cout << "Exiting\n";
-//    */
 
-    
     ///  FREE MEMORY
     // - - -
     for (int i=0;i<number_of_file;++i) 
         Free_file(database[i].title,database[i].content);
     delete []database;
-//    delete []file_list;
     delete []rating;
     delete []ranking;
     delete []good;
+    T_stop.Destruct();
+    T_content.Destruct();
+    T_title.Destruct();
     return 0;
 }
