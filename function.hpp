@@ -43,6 +43,7 @@ struct Trie{
     int iFind(char*);
     Node *Find(char*);
     Node *Find(const char*);
+    Node *Find(char c,const char *word);
 };
 
 struct Data {
@@ -51,7 +52,7 @@ struct Data {
     char *content = NULL;
 };
 
-int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file); 
+int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file,Data *&); 
 void Open_file(istream &,string &,string &);
 void Free_file(char *&,char*&);
 int FILTERING(string file_name);
@@ -61,3 +62,4 @@ void ToLower(string &s);
 void Sort_by_rating(int*,int*,int);
 void Partition(int*,int*,int,int);
 void Show(int,char*);
+Node* KMP(char*,Data*&,int,int);

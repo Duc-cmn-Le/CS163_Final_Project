@@ -2,6 +2,7 @@
 #define xau database[i].title
 #define chuoi database[i].content
 
+Data *database;
 
 int main() {
     int number_of_file;
@@ -11,7 +12,7 @@ int main() {
     fin >> number_of_file;
     fin.close();
     system("rm file.tmp");
-    Data *database = new Data[number_of_file];
+    database = new Data[number_of_file];
     system("ls CS163-Data > file.tmp");
     fin.open("file.tmp");
     // Storing database
@@ -25,6 +26,8 @@ int main() {
         Open_file(fin_2,title,content);
         database[i].title = new char [title.length()];
         strcpy(database[i].title,title.c_str());
+        title += ' ';
+        content = title + content;
         database[i].content = new char [content.length()];
         strcpy(database[i].content,content.c_str());
         fin_2.close();
@@ -164,7 +167,7 @@ int main() {
             if (first) {
                 if (n_input > 1 && input[i+1] == "and") flag = 1;
                 else flag = 0;
-                Query(flag,*TT,input[i].c_str(),rating,number_of_file);
+                Query(flag,*TT,input[i].c_str(),rating,number_of_file,database);
 //                    for (int t=0;t<number_of_file;++t)
 //                        cout << "rating " << i << '=' << rating[t] << '\n';
                 first = 0;
@@ -172,7 +175,7 @@ int main() {
             }
             else {
                 if (flag == 0 || flag == 1)  
-                    Query(flag,*TT,input[i].c_str(),rating,number_of_file);
+                    Query(flag,*TT,input[i].c_str(),rating,number_of_file,database);
                 else {
                     if (input[i][0] == '-') {
                         input[i].erase(0,1);
@@ -183,7 +186,7 @@ int main() {
                         flag = 2;
                     }
                     else flag = 0;
-                    Query(flag,*TT,input[i].c_str(),rating,number_of_file);
+                    Query(flag,*TT,input[i].c_str(),rating,number_of_file,database);
                 }
                 flag = -1;
             }
@@ -208,9 +211,8 @@ int main() {
                 cout << "\033[0m\n";
                 count++;
             }
-            if (count == 0) cout << "Not found!\n";
         }
-            
+        if (count == 0) cout << "Not found!\n";
     }
     cout << "Exiting\n";
 

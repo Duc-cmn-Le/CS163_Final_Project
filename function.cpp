@@ -106,15 +106,75 @@ Node* Trie::Find(const char *s) {
     return cur;
 }
 
+// Huu Duc
+Node* Trie::Find(char c,const char* word)
+{
+	Node* cur = root;
+	int cursor = 0;
+	for (;cursor < strlen(word);cursor++)
+		if (cur->next[int(word[cursor])] != NULL)
+			cur = cur->next[int(word[cursor])];
+		else break;
+	if (cursor < strlen(word)) return NULL; //word not found
+	// word found // cur now is pointing to the Node contain "word" 
+	if (c == ' ') return cur;
+        Node* result = new Node;
+        result->info = new details;
+        details *cur_res=result->info ,*cur_word = cur->info;
+        
+        for (;cur_word != NULL;cur_word = cur_word->next)
+        {
+            for (details *tmp = root[int(c)].info; tmp != NULL;tmp = tmp->next)
+            {
+                if (tmp->file_id == cur_word->file_id)
+                {
+                    for (vector<int>::iterator i = tmp->pos.begin();i < tmp->pos.end();i++)
+                        for (vector<int>::iterator j = cur_word->pos.begin();j < cur_word->pos.end();j++)
+                            if (*i + 2 == *j)
+                            {
+                                cur_res->next = new details;
+                                cur_res = cur_res->next;
+                                cur_res->file_id = tmp->file_id;
+                                cur_res->pos.push_back(*i);
+                                cur_res->next = NULL;
+                            }
+                }
+            }
+        }
+        cur_res = result->info;
+        result->info = result->info->next;
+        delete cur_res;
+        return result;
+	return NULL;
+}
+
 // Cong Duc
-int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file) {
+int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file,Data *&database) {
     // flag
     // OR - 0
     // AND - 1
     // -united - -oo
     // +and - 2
-    // 
-    Node *_find = T.Find(word);
+    // intitle 5
+    Node *_find;
+    if (word[0] == '"' && word[strlen(word)-1] == '"') {
+        string s = "";
+        for (int i=1;i<strlen(word)-1;++i)
+            s += word[i];
+        char *ss = new char [s.length()];
+        strcpy(ss,s.c_str());
+        _find = KMP(ss,database,number_of_file,(flag == 5));
+        delete []ss;
+    }
+    else 
+    if (word[0] == '#' || word[0] == '$') {
+        string s = "";
+        for (int i=1;i<strlen(word);++i)
+            s += word[i];
+        if (word[0] == '#') _find = T.Find('#',s.c_str());
+        if (word[0] == '$') _find = T.Find('$',s.c_str());
+    }
+    else _find = T.Find(word);
     if (flag == -oo && _find->point == 0) return true;
     int *cnt = new int [number_of_file];
     ZERO(cnt);
@@ -129,7 +189,7 @@ int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file) {
         for (int i=0;i<number_of_file;++i)
             if (cnt[i] > 0) rating[i] -= oo;
     }
-    else if (flag == 0 || flag == 2) {
+    else if (flag == 0 || flag >= 2) {
         for (int i=0;i<number_of_file;++i)
             if (rating[i] >= 0)
                 rating[i] += cnt[i];
@@ -261,4 +321,63 @@ void Show(int n,char *s) {
     int Min = (n < strlen(s)) ? n : strlen(s);
     for (int i=0;i<Min;++i)
         cout << s[i];
+}
+
+Node* KMP(char *s,Data *&data,int number_of_file,int intitle) {
+    for (int j=0;j<strlen(s);++j)
+        s[j] = tolower(s[j]);
+    string first_token = "";
+    for (int j=0;j<strlen(s);++j)
+        if (s[j] != ' ') first_token += s[j];
+        else break;
+    int m = strlen(s), *f = new int [m];
+    f[0] = -1;
+    for (int i=1,k=-1;i<m;++i) {
+        while (k >= 0 && tolower(s[k+1]) != tolower(s[i])) k = f[k];
+        if (tolower(s[k+1]) == tolower(s[i])) k++;
+        f[i] = k;
+    } 
+    int *point = new int [number_of_file];
+    ZERO(point);
+    char *p = new char [105000];
+    for (int _=0;_<number_of_file;++_) {
+        if (intitle) strcpy(p,data[_].title);
+        else strcpy(p,data[_].content);
+        int nn = strlen(p);
+        for (int i=0,k=-1;i<nn;++i) {
+            while (k >= 0 && tolower(s[k+1]) != tolower(p[i])) k = f[k];
+            if (tolower(s[k+1]) == tolower(p[i])) k++;
+            if (k == m-1) {
+                if (!((p[i+1] >= 'a' && p[i+1] <= 'z') ||
+                        (p[i+1] >= '0' && p[i+1] <= '9') ||
+                        (p[i+1] >= 'A' && p[i+1] <= 'Z') ))
+                    point[_]++;
+                k = f[k];
+            }
+        }
+    }
+    Node *res = new Node;
+    res->point = 0;
+    details *cur;
+    for (int i=0;i<number_of_file;++i) 
+        if (point[i] > 0) {
+            if (res->info == NULL) {
+                res->info = new details;
+                res->info->file_id = i;
+                for (int j=0;j<point[i];++j)
+                    res->info->pos.push_back(1);
+                cur = res->info;
+            }
+            else {
+                cur->next = new details;
+                cur = cur->next;
+                for (int j=0;j<point[i];++j)
+                    cur->pos.push_back(1);
+                cur->file_id = i;
+            }
+            res->point += point[i];
+        }
+    delete []p;
+    delete []point;
+    return res;
 }
