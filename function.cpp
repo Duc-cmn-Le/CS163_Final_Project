@@ -107,46 +107,45 @@ Node* Trie::Find(const char *s) {
 }
 
 // Huu Duc
-Node* Trie::Find(char c,const char* word)
+Node* Trie::Find(char c,const char* word,Data *&database,int intitle)
 {
-	Node* cur = root;
-	int cursor = 0;
-	for (;cursor < strlen(word);cursor++)
-		if (cur->next[int(word[cursor])] != NULL)
-			cur = cur->next[int(word[cursor])];
-		else break;
-	if (cursor < strlen(word)) return NULL; //word not found
-	// word found // cur now is pointing to the Node contain "word" 
-	if (c == ' ') return cur;
-        Node* result = new Node;
-        result->info = new details;
-        details *cur_res=result->info ,*cur_word = cur->info;
-        
-        for (;cur_word != NULL;cur_word = cur_word->next)
-        {
-            for (details *tmp = root[int(c)].info; tmp != NULL;tmp = tmp->next)
-            {
-                if (tmp->file_id == cur_word->file_id)
-                {
-                    for (vector<int>::iterator i = tmp->pos.begin();i < tmp->pos.end();i++)
-                        for (vector<int>::iterator j = cur_word->pos.begin();j < cur_word->pos.end();j++)
-                            if (*i + 2 == *j)
-                            {
-                                cur_res->next = new details;
-                                cur_res = cur_res->next;
-                                cur_res->file_id = tmp->file_id;
-                                cur_res->pos.push_back(*i);
-                                cur_res->next = NULL;
-                            }
-                }
+    Node *tmp = Find(word);
+    details *info = tmp->info;
+    if (tmp == NULL) return NULL;
+    Node *res = NULL;
+    details *res_info;
+    char *s = new char [105000];
+    vector<int> pos;
+    while (info) {
+        pos.clear();
+        if (intitle) strcpy(s,database[info->file_id].title);
+        else strcpy(s,database[info->file_id].content);
+        for (vector<int>::iterator i=info->pos.begin();i!=info->pos.end();++i) 
+            if (s[*i-1] == c) pos.push_back(*i-1);
+        if (pos.size() > 0) {
+            if (res == NULL) {
+                res = new Node;
+                res->info = new details;
+                res_info = res->info;
+                res_info->file_id = info->file_id;
+                res_info->pos = pos;
+                res->point = pos.size();
+            }
+            else {
+                res_info->next = new details;
+                res_info = res_info->next;
+                res_info->file_id = info->file_id;
+                res_info->pos = pos;
+                res->point += pos.size();
             }
         }
-        cur_res = result->info;
-        result->info = result->info->next;
-        delete cur_res;
-        return result;
-	return NULL;
+        info = info->next;
+    }
+
+    delete []s;
+    return res;
 }
+
 
 // Cong Duc
 int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file,Data *&database) {
@@ -171,8 +170,8 @@ int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file,Data 
         string s = "";
         for (int i=1;i<strlen(word);++i)
             s += word[i];
-        if (word[0] == '#') _find = T.Find('#',s.c_str());
-        if (word[0] == '$') _find = T.Find('$',s.c_str());
+        if (word[0] == '#') _find = T.Find('#',s.c_str(),database,(flag == 5));
+        if (word[0] == '$') _find = T.Find('$',s.c_str(),database,(flag == 5));
     }
     else _find = T.Find(word);
     if (flag == -oo && _find->point == 0) return true;

@@ -32,6 +32,13 @@ public:
     Node() {for (int i=0;i<256;++i) next[i] = NULL;}
 };
 
+struct Data {
+    char filename[20];
+    char *title = NULL;
+    char *content = NULL;
+};
+
+
 struct Trie{
     Node *root = new Node;
     void Destruct();
@@ -43,14 +50,9 @@ struct Trie{
     int iFind(char*);
     Node *Find(char*);
     Node *Find(const char*);
-    Node *Find(char c,const char *word);
+    Node *Find(char c,const char *word,Data *&,int);
 };
 
-struct Data {
-    char filename[20];
-    char *title = NULL;
-    char *content = NULL;
-};
 
 int Query(int flag,Trie T,const char *word,int *rating,int &number_of_file,Data *&); 
 void Open_file(istream &,string &,string &);

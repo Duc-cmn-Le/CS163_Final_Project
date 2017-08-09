@@ -24,11 +24,11 @@ int main() {
 //        FILTERING(String);
         fin_2.open("CS163-Data/"+String);
         Open_file(fin_2,title,content);
-        database[i].title = new char [title.length()];
+        database[i].title = new char [title.length()+1];
         strcpy(database[i].title,title.c_str());
         title += ' ';
         content = title + content;
-        database[i].content = new char [content.length()];
+        database[i].content = new char [content.length()+1];
         strcpy(database[i].content,content.c_str());
         fin_2.close();
     }
@@ -130,11 +130,11 @@ int main() {
      * AND 
      * OR 
      * Manchester -united
-     * intitle:hammer nails
+   - * intitle:hammer nails
      * Peanut Butter +and Jam
-     * filetype:txt
-     * $400
-     * $throwbackthursday
+   - * filetype:txt
+     * $400 
+     * #throwbackthursday
      * "tallest building"
      *
      *
@@ -144,6 +144,7 @@ int main() {
      *
      */
 //    freopen("test.out","w",stdout);
+
     string s, s2, ss; int flag, first, n_input;
     Trie* TT = &T_content;
     vector<string> input;
@@ -168,8 +169,6 @@ int main() {
                 if (n_input > 1 && input[i+1] == "and") flag = 1;
                 else flag = 0;
                 Query(flag,*TT,input[i].c_str(),rating,number_of_file,database);
-//                    for (int t=0;t<number_of_file;++t)
-//                        cout << "rating " << i << '=' << rating[t] << '\n';
                 first = 0;
                 flag = -1;
             }
